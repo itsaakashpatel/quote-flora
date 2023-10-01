@@ -9,15 +9,6 @@ Discover unbeatable deals and earn rewards with DiscountBrite, your go-to mobile
 1. **Aakash Patel** 
    - GitHub: [github.com/itsaakashpatel](https://github.com/itsaakashpatel)
 
-2. **Deep Patel**
-   - GitHub: [github.com/pdeep1506](https://github.com/pdeep1506)
-
-3. **Jenil Jariwala**
-   - GitHub: [github.com/Jenil17](https://github.com/Jenil17)
-
-4. **Ashika Trambadiya**
-   - GitHub: [github.com/Ashika213](https://github.com/Ashika213)
-
 ## Features
 
 DiscountBrite offers a range of features to enhance the shopping experience for Canadian users:
