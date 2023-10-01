@@ -8,6 +8,8 @@ Discover unbeatable deals and earn rewards with DiscountBrite, your go-to mobile
 
 1. **Aakash Patel** 
    - GitHub: [github.com/itsaakashpatel](https://github.com/itsaakashpatel)
+2. **Deep Patel**
+   - Github: [github.com/pdeep1506](https://github.com/pdeep1506)
 
 ## Features
 
