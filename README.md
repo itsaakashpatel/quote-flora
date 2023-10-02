@@ -13,7 +13,7 @@ Discover unbeatable deals and earn rewards with DiscountBrite, your go-to mobile
 3.  **Jenil Jariwala**
    - Github: [github.com/Jenil17](https://github.com/Jenil17)
 4. **Ashika Trambadiya**
-   - Github: (github.com/Ashika213](https://github.com/Ashika213)
+   - Github: [github.com/Ashika213](https://github.com/Ashika213)
 
 ## Features
 
