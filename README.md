@@ -1,6 +1,6 @@
-# DiscountBrite: Where Savings Meet Rewards, Every Time You Shop!
+# QuoteFlora - Your Daily Dose of Inspiration
 
-Discover unbeatable deals and earn rewards with DiscountBrite, your go-to mobile app for maximizing savings on every purchase. Unlock exclusive discounts from your favorite Canadian stores and accumulate valuable reward points for a shopping experience that's both smart and rewarding.
+Embark on a journey of inspiration and wisdom with QuoteFlora, a comprehensive quote generator app that curates a vast collection of thought-provoking quotes to enlighten your day. Immerse yourself in a world of wisdom and motivation, explore various categories, and save your favorite quotes to fuel your daily endeavors.
 
 ## Group 17: 
 
@@ -17,41 +17,58 @@ Discover unbeatable deals and earn rewards with DiscountBrite, your go-to mobile
 
 ## Features
 
-DiscountBrite offers a range of features to enhance the shopping experience for Canadian users:
+### Quote Database
 
-1. **User Authentication:** Allow users to create new accounts and set up their profiles within the app. Provide a secure login system for users to access their accounts and preferences.
+A vast collection of quotes from various categories and authors.
 
-2. **Email Verification:** Implement email verification to enhance security and ensure valid user registration.
+### Random Quote Generation
 
-3. **Password Change:** Enable users to change their passwords for enhanced account security.
+Tap to generate random quotes and find inspiration at your fingertips.
 
-3. **Search Functionality:** Enable users to search for specific products or deals quickly and efficiently.
+### Search Functionality
 
-4. **Filtering Deals:** Allow users to filter search results based on preferences such as price, category, or brand.
+Search for specific quotes, authors, or keywords to find what resonates with you.
 
-5. **Push Notifications:** Keep users informed about the latest discounts, offers, and updates via push notifications.
+### Favorite Quotes
 
-6. **Discount Deals - Dashboard:** Present comprehensive details about discounts and promotions for informed decision-making.
+Save your favorite quotes for easy access and revisit them whenever you want.
 
-7. **Feedback and Support:** Offer a platform for users to provide feedback and seek assistance or support.
+### Daily Quote
 
-8. **Daily Deals:** Showcase daily special offers and time-limited discounts to encourage frequent visits.
+Receive a fresh, inspiring quote every day to kickstart your day on a positive note.
 
-9. **Social Sharing:** Allow users to share their shopping experiences or favorite deals on social media platforms.
+### Author Information
 
-10. **Multiple Language Support:** Provide the app in multiple languages to cater to a diverse user base.
+Explore additional information about the author of the quote, including their bio and works.
 
-11. **Theme Change:** Allow users to customize the app's theme based on their preferences.
+### Category Filters
 
-12. **Payment Integration:** Integrate secure payment options for seamless transactions within the app.
+Browse quotes by categories such as love, motivation, friendship, and more.
 
-13. **Categories:** Organize products and deals into specific categories for easy browsing and shopping.
+### Customization
 
-14. **Premium Membership:** Offer a subscription-based premium membership for exclusive benefits and discounts.
+Customize the app's appearance with themes and font styles that suit your preferences.
 
-15. **Discount Brite Card:** Provide a virtual Discount Brite card for easy scanning and quick access to discounts.
+### Sharing
 
-17. **User Profile Management & Settings:** Allow users to upload and manage their profile pictures to personalize their accounts.
+Share your favorite quotes on social media or via messaging apps to spread inspiration.
+
+### Save to Gallery
+
+Save quotes as images to your device's gallery for easy access and sharing.
+
+### Notifications
+
+Receive daily or weekly quote notifications to stay inspired.
+
+### Offline Access
+
+Download quotes for offline viewing, ideal for travelers or those with limited internet access.
+
+### Personal Quote Journal
+
+Write and save your own quotes or thoughts in a personal quote journal within the app.
+
 
 Thanks!
 
