@@ -39,7 +39,7 @@ Receive a fresh, inspiring quote every day to kickstart your day on a positive n
 
 ### Author Information
 
-Explore additional information about the author of the quote, including their bio and works.
+Explore additional information about the quote's author, including their bio and works.
 
 ### Category Filters
 
@@ -51,7 +51,7 @@ Customize the app's appearance with themes and font styles that suit your prefer
 
 ### Sharing
 
-Share your favorite quotes on social media or via messaging apps to spread inspiration.
+You can share your favorite quotes on social media or messaging apps to spread inspiration.
 
 ### Save to Gallery
 
@@ -69,6 +69,17 @@ Download quotes for offline viewing, ideal for travelers or those with limited i
 
 Write and save your own quotes or thoughts in a personal quote journal within the app.
 
+### Light & Dark mode support
+
+An appearance in light or dark mode.
+
+### Multi-language support
+
+Multi-language support for the app for easy navigation of the app
+
+### Delete A Quote
+
+Delete a quote that users don't like.
 
 Thanks!
 
