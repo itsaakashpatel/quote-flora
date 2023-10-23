@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { quotes } from "./src/data";
+import Notification from "./src/utilities/Notification";
 
 function App() {
   const firstQuote = quotes[0] || "No quotes found";
@@ -11,6 +12,8 @@ function App() {
     <View style={styles.container}>
       <Text variant="displayMedium">Quote of the day</Text>
       {firstQuote && <Text>{JSON.stringify(firstQuote)}</Text>}
+
+      <Notification></Notification>
       <StatusBar style="auto" />
     </View>
   );
