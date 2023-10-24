@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
     txt:{
         fontWeight: 'bold',
         fontSize: 30,
-        color:'#BDBDBD'
+        color:'black',
+        paddingLeft: 30,
+        marginTop: 10,
     }
 })
