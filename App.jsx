@@ -13,12 +13,12 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Home">
+      <Tab.Navigator>
         <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{
-            tabBarLabel: 'Home',
+            headerShown: false, 
             tabBarIcon: ({ color, size }) => (
               <Icon name="home" color={color} size={size} />
             ),
@@ -28,6 +28,7 @@ function App() {
           name="Search"
           component={SearchScreen}
           options={{
+            headerShown: false, 
             tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (
               <Icon name="search" color={color} size={size} />
@@ -38,6 +39,7 @@ function App() {
           name="Favourite"
           component={Favourite}
           options={{
+            headerShown: false, 
             tabBarLabel: 'Favourite',
             tabBarIcon: ({ color, size }) => (
               <Icon name="star" color={color} size={size} />
@@ -48,6 +50,7 @@ function App() {
           name="Categories"
           component={Categories}
           options={{
+            headerShown: false, 
             tabBarLabel: 'Categories',
             tabBarIcon: ({ color, size }) => (
               <Icon name="star" color={color} size={size} />
