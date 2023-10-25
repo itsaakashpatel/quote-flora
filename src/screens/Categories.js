@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
+import categories from '../data/categories.json';
+import { useNavigation } from '@react-navigation/native';
 
-const Categories = ({ navigation }) => {
-  const [categoryData, setCategoryData] = useState([]);
+const Categories = () => {
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    // Function to fetch data from categories.json
-    const fetchData = async () => {
-      try {
-        const response = await fetch('categories.json'); // Adjust the path to your JSON file
-        const data = await response.json();
-        setCategoryData(data);
-      } catch (error) {
-        console.error('Error fetching category data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const navigateToCategory = (category) => {
-    // Your navigation logic here
-    // For example, use React Navigation to navigate to a category-specific screen
-    // navigation.navigate('CategoryScreen', { category });
+  const navigateToCategory = (categoryName) => {
+    navigation.navigate('CategoryScreen', { categoryName });
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Categories</Text>
       <FlatList
-        data={categoryData}
+        data={categories}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigateToCategory(item.name)}>
@@ -39,7 +24,7 @@ const Categories = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -51,6 +36,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginTop: 16,
     marginBottom: 16,
   },
   categoryItem: {
