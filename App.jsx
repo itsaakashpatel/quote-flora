@@ -1,31 +1,70 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
-import { quotes } from "./src/data";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SplashScreen from "./src/screens/SplashScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import SearchScreen from "./src/screens/SearchScreen";
+import Favourite from "./src/screens/Favourite";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Categories from "./src/screens/Categories";
 import Notification from "./src/utilities/Notification";
 
-function App() {
-  const firstQuote = quotes[0] || "No quotes found";
-  console.log(firstQuote);
-  return (
-    <View style={styles.container}>
-      <Text variant="displayMedium">Quote of the day</Text>
-      {firstQuote && <Text>{JSON.stringify(firstQuote)}</Text>}
+const Tab = createBottomTabNavigator();
 
-      <Notification></Notification>
-      <StatusBar style="auto" />
-    </View>
+function App() {
+  return (
+    <>
+      <Notification />
+
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="home" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={SearchScreen}
+            options={{
+              headerShown: false,
+              tabBarLabel: "Search",
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="search" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Favourite"
+            component={Favourite}
+            options={{
+              headerShown: false,
+              tabBarLabel: "Favourite",
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="star" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Categories"
+            component={Categories}
+            options={{
+              headerShown: false,
+              tabBarLabel: "Categories",
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="star" color={color} size={size} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default App;
