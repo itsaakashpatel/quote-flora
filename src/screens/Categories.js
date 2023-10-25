@@ -1,17 +1,49 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-
-//List of categories
-//Click will open a new screen which shows all quotes of that category
+import React from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
+import categories from '../data/categories.json';
+import { useNavigation } from '@react-navigation/native';
 
 const Categories = () => {
+  const navigation = useNavigation();
+
+  const navigateToCategory = (categoryName) => {
+    navigation.navigate('CategoryScreen', { categoryName });
+  };
+
   return (
-    <View>
-      <Text>Categories</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>Categories</Text>
+      <FlatList
+        data={categories}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigateToCategory(item.name)}>
+            <View style={styles.categoryItem}>
+              <Text>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </SafeAreaView>
+  );
+};
 
-export default Categories
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  categoryItem: {
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+});
 
-const styles = StyleSheet.create({})
+export default Categories;
