@@ -1,10 +1,8 @@
-import  { useEffect } from 'react';
+import { useEffect } from "react";
 
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
-import { quotes } from '../data';
-
-
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+import { quotes } from "../data";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -14,14 +12,10 @@ Notifications.setNotificationHandler({
   }),
 });
 
-
-
 const Notification = () => {
-
-
-useEffect(() => {
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-      const inspiringQuote = quotes[randomIndex];
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const inspiringQuote = quotes[randomIndex];
 
     async function schedulePushNotification() {
       await Notifications.scheduleNotificationAsync({
@@ -37,11 +31,7 @@ useEffect(() => {
     schedulePushNotification();
   }, []);
 
-  
-
-
-return null;
+  return null;
 };
 
 export default Notification;
-
