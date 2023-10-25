@@ -6,8 +6,9 @@ import LikeButton from './LikeButtons';
 const QuoteCard = ({ quote }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Quote: {quote.content}</Text>
-      <Text style={styles.text}>Author: {quote.author}</Text>
+      <Text style={styles.textHead}> Quote: </Text>
+      <Text style={styles.text}>{quote.content}</Text>
+      <Text style={styles.text}> <Text style={styles.textHead} >Author: </Text>{quote.author}</Text>
      <LikeButton />
     </View>
   );
@@ -24,10 +25,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  textHead:{
+    fontSize:16,
+    fontWeight: 'bold',
+    color: 'black',
+    marginBottom: 3
+  },
   text: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: 'black'
+    color: 'grey',
+    textAlign:'center',
+    marginBottom: 2,
   },
 });
 
