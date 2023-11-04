@@ -20,14 +20,34 @@ const SearchScreen = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
+    const lowerCaseQuery = searchQuery && searchQuery.toLowerCase();
     if (selectedCategory === TYPES.AUTHOR) {
-      setSearchResults(authors.slice(0, 7));
+      if (!lowerCaseQuery) {
+        setSearchResults(authors.slice(0, 7));
+      } else {
+        const results = authors.filter((item) =>
+          item.name.toLowerCase().includes(lowerCaseQuery)
+        );
+        setSearchResults(results);
+      }
       return;
     } else if (selectedCategory === TYPES.QUOTE) {
-      setSearchResults(quotes.slice(0, 7));
+      if (!lowerCaseQuery) setSearchResults(quotes.slice(0, 7));
+      else {
+        const results = quotes.filter((item) =>
+          item.content.toLowerCase().includes(lowerCaseQuery)
+        );
+        setSearchResults(results);
+      }
       return;
     } else if (selectedCategory === TYPES.CATEGORIES) {
-      setSearchResults(categories.slice(0, 7));
+      if (!lowerCaseQuery) setSearchResults(categories.slice(0, 7));
+      else {
+        const results = categories.filter((item) =>
+          item.name.toLowerCase().includes(lowerCaseQuery)
+        );
+        setSearchResults(results);
+      }
       return;
     }
   }, [selectedCategory]);

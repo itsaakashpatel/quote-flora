@@ -7,15 +7,8 @@ import {
   Linking,
 } from "react-native";
 import TYPES from "../utils/types";
-import { useNavigation } from "@react-navigation/native";
 
 function SearchResult({ type, data }) {
-  const navigation = useNavigation();
-
-  const navigateToCategory = (categoryName) => {
-    navigation.navigate("CategoryScreen", { categoryName });
-  };
-
   const openURL = (link) => {
     Linking.openURL(link);
   };
@@ -32,11 +25,9 @@ function SearchResult({ type, data }) {
     );
   } else if (type === TYPES.CATEGORIES) {
     return (
-      <TouchableOpacity onPress={() => navigateToCategory(data.name)}>
-        <View style={styles.container}>
-          <Text style={{ ...styles.title, fontSize: 16 }}>{data.name}</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <Text style={{ ...styles.title, fontSize: 16 }}>{data.name}</Text>
+      </View>
     );
   } else if (type === TYPES.QUOTE) {
     return (
