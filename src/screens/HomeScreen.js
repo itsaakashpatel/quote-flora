@@ -1,10 +1,15 @@
-
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, SafeAreaView, Button, ScrollView } from 'react-native';
-import Header from '../components/Header';
-import { quotes } from '../data';
-import QuoteCard from '../components/QuoteCard';
-import MainButton from '../components/MainButton';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Button,
+  ScrollView,
+} from "react-native";
+import Header from "../components/Header";
+import { quotes } from "../data";
+import QuoteCard from "../components/QuoteCard";
+import MainButton from "../components/MainButton";
 const HomeScreen = () => {
   const [randomQuoteIndices, setRandomQuoteIndices] = useState([]);
 
@@ -36,16 +41,13 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Header text={"Quotes"} />
       <ScrollView>
         {randomQuoteIndices.map((index) => (
           <QuoteCard key={index} quote={quotes[index]} />
         ))}
       </ScrollView>
-      <MainButton
-        title="Get New Quotes"
-        onPress={changeRandomQuotes}
-      />
+      <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />
     </SafeAreaView>
   );
 };
@@ -53,8 +55,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0F4FE',
- 
+    backgroundColor: "#F0F4FE",
   },
 });
 

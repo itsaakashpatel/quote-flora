@@ -1,13 +1,24 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
-import categories from '../data/categories.json';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import categories from "../data/categories.json";
+import { useNavigation } from "@react-navigation/native";
 
 const Categories = () => {
   const navigation = useNavigation();
 
   const navigateToCategory = (categoryName) => {
-    navigation.navigate('CategoryScreen', { categoryName });
+    console.log(
+      "🚀 ~ file: Categories.js:10 ~ navigateToCategory ~ categoryName:",
+      categoryName
+    );
+    navigation.navigate("CategoryScreen", { categoryName });
   };
 
   return (
@@ -35,14 +46,14 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 16,
     marginBottom: 16,
   },
   categoryItem: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: "#ccc",
   },
 });
 
