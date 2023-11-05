@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import LikeButton from './LikeButtons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const QuoteCard = ({quote}) => {
   return (
