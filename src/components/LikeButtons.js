@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import React, {useState} from 'react';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const LikeButton = () => {
@@ -12,11 +12,7 @@ const LikeButton = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={toggleLike}>
-        <Icon
-          name={isLiked ? 'heart' : 'heart-o'} 
-          size={26}
-          color={isLiked ? 'red' : 'black'} 
-        />
+        <Icon name={isLiked ? 'heart' : 'heart-o'} size={26} color={isLiked ? 'red' : 'black'} />
       </TouchableOpacity>
     </View>
   );

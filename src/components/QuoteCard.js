@@ -1,15 +1,18 @@
-
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import LikeButton from './LikeButtons';
 
-const QuoteCard = ({ quote }) => {
+const QuoteCard = ({quote}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textHead}> Quote: </Text>
       <Text style={styles.text}>{quote.content}</Text>
-      <Text style={styles.text}> <Text style={styles.textHead} >Author: </Text>{quote.author}</Text>
-     <LikeButton />
+      <Text style={styles.text}>
+        {' '}
+        <Text style={styles.textHead}>Author: </Text>
+        {quote.author}
+      </Text>
+      <LikeButton />
     </View>
   );
 };
@@ -23,18 +26,18 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 10,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  textHead:{
-    fontSize:16,
+  textHead: {
+    fontSize: 16,
     fontWeight: 'bold',
     color: 'black',
-    marginBottom: 3
+    marginBottom: 3,
   },
   text: {
     fontSize: 16,
     color: 'grey',
-    textAlign:'center',
+    textAlign: 'center',
     marginBottom: 2,
   },
 });

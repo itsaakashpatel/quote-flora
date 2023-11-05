@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView} from 'react-native';
 import categories from '../data/categories.json';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const Categories = () => {
   const navigation = useNavigation();
 
   const navigateToCategory = (categoryName) => {
-    navigation.navigate('CategoryScreen', { categoryName });
+    navigation.navigate('CategoryScreen', {categoryName});
   };
 
   return (
@@ -16,7 +16,7 @@ const Categories = () => {
       <FlatList
         data={categories}
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <TouchableOpacity onPress={() => navigateToCategory(item.name)}>
             <View style={styles.categoryItem}>
               <Text>{item.name}</Text>

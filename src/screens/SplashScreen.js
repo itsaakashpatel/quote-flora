@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, Image, StyleSheet} from 'react-native';
 
-const SplashScreen = ({ navigation }) => {
+const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('HomeScreen');
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 200,
-    height: 200, 
+    height: 200,
   },
   text: {
     fontSize: 24,
     marginTop: 20,
-    color: 'white'
+    color: 'white',
   },
 });
 
