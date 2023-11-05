@@ -8,6 +8,17 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
@@ -27,7 +38,9 @@
     "react-native-vector-icons": "^10.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3"
   },
   "private": true
 }

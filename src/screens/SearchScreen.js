@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-} from "react-native";
-import SegmentedControlTab from "react-native-segmented-control-tab";
-import { authors, quotes, categories } from "../data";
-import Header from "../components/Header";
-import debounce from "../utils/debounce";
-import TYPES from "../utils/types";
-import SearchResult from "../components/SearchResult";
+import React, {useState, useEffect} from 'react';
+import {View, Text, TextInput, FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
+import {authors, quotes, categories} from '../data';
+import Header from '../components/Header';
+import debounce from '../utils/debounce';
+import TYPES from '../utils/types';
+import SearchResult from '../components/SearchResult';
 
 const SearchScreen = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(TYPES.AUTHOR); // 0 for Authors, 1 for Quotes, 2 for Categories
   const [searchResults, setSearchResults] = useState([]);
 
@@ -25,9 +18,7 @@ const SearchScreen = () => {
       if (!lowerCaseQuery) {
         setSearchResults(authors.slice(0, 7));
       } else {
-        const results = authors.filter((item) =>
-          item.name.toLowerCase().includes(lowerCaseQuery)
-        );
+        const results = authors.filter((item) => item.name.toLowerCase().includes(lowerCaseQuery));
         setSearchResults(results);
       }
       return;
@@ -35,7 +26,7 @@ const SearchScreen = () => {
       if (!lowerCaseQuery) setSearchResults(quotes.slice(0, 7));
       else {
         const results = quotes.filter((item) =>
-          item.content.toLowerCase().includes(lowerCaseQuery)
+          item.content.toLowerCase().includes(lowerCaseQuery),
         );
         setSearchResults(results);
       }
@@ -44,7 +35,7 @@ const SearchScreen = () => {
       if (!lowerCaseQuery) setSearchResults(categories.slice(0, 7));
       else {
         const results = categories.filter((item) =>
-          item.name.toLowerCase().includes(lowerCaseQuery)
+          item.name.toLowerCase().includes(lowerCaseQuery),
         );
         setSearchResults(results);
       }
@@ -57,19 +48,13 @@ const SearchScreen = () => {
     const lowerCaseQuery = query.toLowerCase();
 
     if (selectedCategory === TYPES.AUTHOR) {
-      const results = authors.filter((item) =>
-        item.name.toLowerCase().includes(lowerCaseQuery)
-      );
+      const results = authors.filter((item) => item.name.toLowerCase().includes(lowerCaseQuery));
       setSearchResults(results);
     } else if (selectedCategory === TYPES.QUOTE) {
-      const results = quotes.filter((item) =>
-        item.content.toLowerCase().includes(lowerCaseQuery)
-      );
+      const results = quotes.filter((item) => item.content.toLowerCase().includes(lowerCaseQuery));
       setSearchResults(results);
     } else if (selectedCategory === TYPES.CATEGORIES) {
-      const results = categories.filter((item) =>
-        item.name.toLowerCase().includes(lowerCaseQuery)
-      );
+      const results = categories.filter((item) => item.name.toLowerCase().includes(lowerCaseQuery));
       setSearchResults(results);
     }
   }, 300);
@@ -87,7 +72,7 @@ const SearchScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header text={"Search"} />
+      <Header text={'Search'} />
       <TextInput
         placeholder="Search for authors, quotes, or categories"
         value={searchQuery}
@@ -95,7 +80,7 @@ const SearchScreen = () => {
         style={styles.searchInput}
       />
       <SegmentedControlTab
-        values={["Authors", "Quotes", "Categories"]}
+        values={['Authors', 'Quotes', 'Categories']}
         selectedIndex={getIndex()}
         onTabPress={(index) => {
           if (index === 0) setSelectedCategory(TYPES.AUTHOR);
@@ -112,7 +97,7 @@ const SearchScreen = () => {
         <FlatList
           data={searchResults}
           keyExtractor={(item) => item._id.toString()}
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <SearchResult key={item._id} type={selectedCategory} data={item} />
           )}
           style={styles.searchResultsContainer}
@@ -125,10 +110,10 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F0F4FE",
+    backgroundColor: '#F0F4FE',
   },
   searchInput: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     marginHorizontal: 30,
     marginVertical: 10,
     paddingLeft: 30,

@@ -1,14 +1,12 @@
-import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import QuoteCard from "../components/QuoteCard";
-import { quotes } from "../data";
+import React from 'react';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
+import QuoteCard from '../components/QuoteCard';
+import {quotes} from '../data';
 
-const CategoryScreen = ({ route }) => {
-  const { categoryName } = route.params;
+const CategoryScreen = ({route}) => {
+  const {categoryName} = route.params;
 
-  const quotesForCategory = quotes.filter((quote) =>
-    quote.categories.includes(categoryName)
-  );
+  const quotesForCategory = quotes.filter((quote) => quote.categories.includes(categoryName));
 
   return (
     <View style={styles.container}>
@@ -16,7 +14,7 @@ const CategoryScreen = ({ route }) => {
       <FlatList
         data={quotesForCategory}
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <QuoteCard quote={item} />}
+        renderItem={({item}) => <QuoteCard quote={item} />}
       />
     </View>
   );
@@ -29,13 +27,13 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 16,
   },
   quoteItem: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: '#ccc',
   },
 });
 

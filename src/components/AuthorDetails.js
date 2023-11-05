@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import LikeButton from "./LikeButtons";
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import LikeButton from './LikeButtons';
 
-const AuthorDetails = ({ author }) => {
+const AuthorDetails = ({author}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Quote: {author.content}</Text>
@@ -14,14 +14,13 @@ const AuthorDetails = ({ author }) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'black', 
-    borderWidth: 1, 
-    borderRadius: 10, 
-    padding: 20, 
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 20,
     margin: 10,
     justifyContent: 'center',
-    alignItems: 'center'
-
+    alignItems: 'center',
   },
   text: {
     fontSize: 16,

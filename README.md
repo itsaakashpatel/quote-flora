@@ -2,15 +2,15 @@
 
 Embark on a journey of inspiration and wisdom with QuoteFlora, a comprehensive quote generator app that curates a vast collection of thought-provoking quotes to enlighten your day. Immerse yourself in a world of wisdom and motivation, explore various categories, and save your favorite quotes to fuel your daily endeavors.
 
-## Group 17: 
+## Group 17:
 
 ### Team Members
 
-1. **Aakash Patel** 
+1. **Aakash Patel**
    - GitHub: [github.com/itsaakashpatel](https://github.com/itsaakashpatel)
 2. **Deep Patel**
    - Github: [github.com/pdeep1506](https://github.com/pdeep1506)
-3.  **Jenil Jariwala**
+3. **Jenil Jariwala**
    - Github: [github.com/Jenil17](https://github.com/Jenil17)
 4. **Ashika Trambadiya**
    - Github: [github.com/Ashika213](https://github.com/Ashika213)
@@ -82,5 +82,3 @@ Multi-language support for the app for easy navigation of the app
 Delete a quote that users don't like.
 
 Thanks!
-
-

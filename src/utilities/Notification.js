@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import {useEffect} from 'react';
 
-import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
-import { quotes } from "../data";
+import * as Notifications from 'expo-notifications';
+import * as Permissions from 'expo-permissions';
+import {quotes} from '../data';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -24,7 +24,7 @@ const Notification = () => {
           body: `${inspiringQuote.content} - ${inspiringQuote.author}`,
           // icon:
         },
-        trigger: { seconds: 2 },
+        trigger: {seconds: 2},
       });
     }
 
