@@ -1,19 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const QuoteCard = ({quote}) => {
+  const QuoteCard = ({ quote, onDelete }) => {
+    const handleDelete = () => {
+      onDelete(quote._id); 
+    };
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.textHead}> Quote: </Text>
       <Text style={styles.text}>{quote.content}</Text>
       <Text style={styles.text}>
-        {' '}
         <Text style={styles.textHead}>Author: </Text>
         {quote.author}
       </Text>
+      <View style={{flexDirection: 'row',alignItems: 'center'}}>
       <LikeButton />
+      <TouchableOpacity onPress={handleDelete}>
+        <Icon name="trash" size={22} color="red" />
+      </TouchableOpacity>
+      </View>
     </View>
   );
 };

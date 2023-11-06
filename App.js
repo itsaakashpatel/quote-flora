@@ -10,6 +10,7 @@ import SearchScreen from './src/screens/SearchScreen';
 import Favourite from './src/screens/Favourite';
 import Categories from './src/screens/Categories';
 import CategoryScreen from './src/screens/CategoryScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
