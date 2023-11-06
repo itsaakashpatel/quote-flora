@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createStackNavigator} from '@react-navigation/stack';
-import { Ionicons } from '@expo/vector-icons'; 
+import {Ionicons} from '@expo/vector-icons';
 import SplashScreen from './src/screens/SplashScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import SearchScreen from './src/screens/SearchScreen';
@@ -14,7 +14,7 @@ import SettingScreen from './src/screens/SettingScreen';
 import Notification from './src/utilities/Notification';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { View } from 'react-native';
+import {View} from 'react-native';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -29,8 +29,6 @@ function CategoriesStack() {
 
 function App() {
   return (
-
-   
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
@@ -77,11 +75,9 @@ function App() {
             tabBarIcon: ({color, size}) => <Ionicons name="settings" size={size} color={color} />,
           }}
         />
-        
       </Tab.Navigator>
       {/* <Notification></Notification> */}
     </NavigationContainer>
-   
   );
 }
 

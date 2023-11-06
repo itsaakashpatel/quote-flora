@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import * as Notifications from 'expo-notifications';
-import { quotes } from '../data';
+import {quotes} from '../data';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -10,12 +10,12 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const Notification = ({ notificationTime, notificationFrequency, isNotificationEnabled }) => {
+const Notification = ({notificationTime, notificationFrequency, isNotificationEnabled}) => {
   useEffect(() => {
     if (isNotificationEnabled) {
       let nextScheduledTime;
       const now = new Date();
-      
+
       switch (notificationFrequency) {
         case 'daily':
           nextScheduledTime = new Date();
@@ -67,7 +67,7 @@ const Notification = ({ notificationTime, notificationFrequency, isNotificationE
               title: "You've got motivation!",
               body: `${inspiringQuote.content} - ${inspiringQuote.author}`,
             },
-            trigger: { seconds: delay / 1000 },
+            trigger: {seconds: delay / 1000},
           });
         };
 

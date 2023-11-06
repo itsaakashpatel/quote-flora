@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, Switch, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, SafeAreaView, Switch, StyleSheet, TouchableOpacity} from 'react-native';
 import Header from '../components/Header';
 
 import ModalSelector from 'react-native-modal-selector';
@@ -10,18 +10,15 @@ const SettingScreen = () => {
   const [notificationTime, setNotificationTime] = useState(new Date());
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
   const [notificationFrequency, setNotificationFrequency] = useState('daily');
-  
+
   const frequencyOptions = [
-    { key: 'daily', label: 'Daily' },
-    { key: 'weekly', label: 'Weekly' },
-    { key: 'monthly', label: 'Monthly' },
+    {key: 'daily', label: 'Daily'},
+    {key: 'weekly', label: 'Weekly'},
+    {key: 'monthly', label: 'Monthly'},
   ];
 
   const toggleNotification = (value) => {
-   
     setNotificationEnabled(value);
-
-  
   };
 
   const showTimePicker = () => {
@@ -72,7 +69,11 @@ const SettingScreen = () => {
           onChange={(option) => setNotificationFrequency(option.key)}
         />
 
-        <Notification notificationTime={notificationTime} notificationFrequency={notificationFrequency} isNotificationEnabled={notificationEnabled}></Notification>
+        <Notification
+          notificationTime={notificationTime}
+          notificationFrequency={notificationFrequency}
+          isNotificationEnabled={notificationEnabled}
+        ></Notification>
       </View>
     </SafeAreaView>
   );
