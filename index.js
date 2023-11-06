@@ -4,7 +4,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 
 import App from './App';
 
-const Main = () => {  
+const Main = () => {
   return (
     <PaperProvider>
       <App />

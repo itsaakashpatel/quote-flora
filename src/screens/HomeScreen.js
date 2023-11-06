@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
@@ -11,7 +11,6 @@ const HomeScreen = () => {
   const [allQuotes, setAllQuotes] = useState([...quotes]);
 
   useEffect(() => {
-
     AsyncStorage.getItem('quotes')
       .then((jsonQuotes) => {
         if (jsonQuotes) {
@@ -63,11 +62,9 @@ const HomeScreen = () => {
     AsyncStorage.setItem('quotes', JSON.stringify(updatedQuotes))
       .then(() => {
         console.log('Quote deleted and quotes updated successfully');
-      
       })
       .catch((error) => console.error('Error deleting quote:', error));
   }
-  
 
   return (
     <SafeAreaView style={styles.container}>
