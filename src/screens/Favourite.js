@@ -71,7 +71,7 @@ const Favourite = () => {
 
   return (
     <SafeAreaView>
-      <Header text={'Favourite Quotes'} />
+      <Header text={'Your favourite Quotes'} />
       <FlatList
         style={styles.container}
         data={likedQuotes}
