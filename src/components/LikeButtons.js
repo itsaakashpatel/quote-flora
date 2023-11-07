@@ -1,18 +1,27 @@
-import React, {useState} from 'react';
+// LikeButton.js
+import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const LikeButton = () => {
-  const [isLiked, setIsLiked] = useState(false);
-
+const LikeButton = ({quote, onLikeHandler}) => {
   const toggleLike = () => {
-    setIsLiked(!isLiked);
+    // setIsLikedQuote(quote.isLiked ? false: true)
+    onLikeHandler({
+      id: quote._id,
+      isLiked: !quote.isLiked,
+    });
+    // Add this line to log when the button is clicked
+    console.log('Like button clicked. isLiked:', quote.isLiked);
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={toggleLike}>
-        <Icon name={isLiked ? 'heart' : 'heart-o'} size={26} color={isLiked ? 'red' : 'black'} />
+        <Icon
+          name={quote.isLiked ? 'heart' : 'heart-o'}
+          size={26}
+          color={quote.isLiked ? 'red' : 'black'}
+        />
       </TouchableOpacity>
     </View>
   );

@@ -66,12 +66,33 @@ const HomeScreen = () => {
       .catch((error) => console.error('Error deleting quote:', error));
   }
 
+  function favouriteQuoteHandler(value) {
+    const updatedLikedQuotes = allQuotes.reduce((accumulator, currentQuote) => {
+      if (currentQuote._id === value.id) {
+        currentQuote.isLiked = value.isLiked; // Update isLiked property
+      }
+      return [...accumulator, currentQuote];
+    }, []);
+
+    setAllQuotes(updatedLikedQuotes);
+    AsyncStorage.setItem('quotes', JSON.stringify(updatedLikedQuotes))
+      .then(() => {
+        console.log('Quote updated and quotes updated successfully');
+      })
+      .catch((error) => console.error('Error in updating quote:', error));
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Header text={'Quotes'} />
       <ScrollView>
         {randomQuoteIndices.map((index) => (
-          <QuoteCard key={index} quote={allQuotes[index]} onDelete={deleteQuote} />
+          <QuoteCard
+            key={index}
+            quote={allQuotes[index]}
+            onDelete={deleteQuote}
+            favouriteQuoteHandler={favouriteQuoteHandler}
+          />
         ))}
       </ScrollView>
       <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />

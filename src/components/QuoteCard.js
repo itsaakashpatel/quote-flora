@@ -1,11 +1,17 @@
+//QuoteCard.js
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const QuoteCard = ({quote, onDelete}) => {
+const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
   const handleDelete = () => {
     onDelete(quote._id);
+  };
+
+  const onLikeHandler = (value) => {
+    //Id and value
+    favouriteQuoteHandler(value);
   };
 
   return (
@@ -17,7 +23,7 @@ const QuoteCard = ({quote, onDelete}) => {
         {quote.author}
       </Text>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <LikeButton />
+        <LikeButton quote={quote} onLikeHandler={(value) => onLikeHandler(value)} />
         <TouchableOpacity onPress={handleDelete}>
           <Icon name="trash" size={22} color="red" />
         </TouchableOpacity>
