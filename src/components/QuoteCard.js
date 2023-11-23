@@ -16,13 +16,12 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textHead}> Quote: </Text>
       <Text style={styles.text}>{quote.content}</Text>
       <Text style={styles.text}>
-        <Text style={styles.textHead}>Author: </Text>
+        <Text style={styles.textHead}>by: </Text>
         {quote.author}
       </Text>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View style={styles.actionButtons}>
         <LikeButton quote={quote} onLikeHandler={(value) => onLikeHandler(value)} />
         <TouchableOpacity onPress={handleDelete}>
           <Icon name="trash" size={22} color="red" />
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 2,
     borderRadius: 20,
-    padding: 15,
+    padding: 20,
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -47,13 +46,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'black',
-    marginBottom: 3,
+    lineHeight: 30,
   },
   text: {
     fontSize: 16,
     color: 'grey',
     textAlign: 'center',
-    marginBottom: 2,
+    lineHeight: 20,
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
   },
 });
 

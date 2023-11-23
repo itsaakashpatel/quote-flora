@@ -29,7 +29,7 @@ const LikeButton = ({quote, onLikeHandler}) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    marginHorizontal: 10,
   },
 });
 

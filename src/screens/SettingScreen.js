@@ -73,7 +73,7 @@ const SettingScreen = () => {
           notificationTime={notificationTime}
           notificationFrequency={notificationFrequency}
           isNotificationEnabled={notificationEnabled}
-        ></Notification>
+        />
       </View>
     </SafeAreaView>
   );

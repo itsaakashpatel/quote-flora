@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
     borderColor: '#365CD7',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: '90%',
+    width: '70%',
     padding: 15,
   },
   buttonText: {
