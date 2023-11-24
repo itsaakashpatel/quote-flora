@@ -11,11 +11,13 @@
     "lint": "prettier --check ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "@react-navigation/stack": "^6.3.20",
     "expo": "^49.0.16",
+    "expo-media-library": "^15.6.0",
     "expo-notifications": "~0.20.1",
     "expo-permissions": "^14.4.0",
     "expo-status-bar": "~1.6.0",
@@ -29,7 +31,7 @@
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-vector-icons": "^10.0.0",
-    "@react-native-async-storage/async-storage": "1.18.2"
+    "react-native-view-shot": "3.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

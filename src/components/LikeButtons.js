@@ -19,7 +19,7 @@ const LikeButton = ({quote, onLikeHandler}) => {
       <TouchableOpacity onPress={toggleLike}>
         <Icon
           name={quote.isLiked ? 'heart' : 'heart-o'}
-          size={26}
+          size={22}
           color={quote.isLiked ? 'red' : 'black'}
         />
       </TouchableOpacity>
@@ -28,9 +28,7 @@ const LikeButton = ({quote, onLikeHandler}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-  },
+  container: {},
 });
 
 export default LikeButton;

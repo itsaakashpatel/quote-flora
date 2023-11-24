@@ -11,10 +11,7 @@ import Favourite from './src/screens/Favourite';
 import Categories from './src/screens/Categories';
 import CategoryScreen from './src/screens/CategoryScreen';
 import SettingScreen from './src/screens/SettingScreen';
-import Notification from './src/utilities/Notification';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {View} from 'react-native';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
