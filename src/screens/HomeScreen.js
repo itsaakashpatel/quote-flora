@@ -1,14 +1,25 @@
-import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import * as Permissions from 'expo-permissions';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
 import quotes from '../data/quotes.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ViewShot from 'react-native-view-shot';
+import * as MediaLibrary from 'expo-media-library';
 
 const HomeScreen = () => {
   const [randomQuoteIndices, setRandomQuoteIndices] = useState([]);
   const [allQuotes, setAllQuotes] = useState([...quotes]);
+  const scrollViewRef = useRef(null);
 
   useEffect(() => {
     AsyncStorage.getItem('quotes')
@@ -20,24 +31,23 @@ const HomeScreen = () => {
       })
       .catch((error) => console.error('Error loading quotes:', error));
 
-    const initialIndices = [];
-    while (initialIndices.length < 5) {
-      const randomIndex = getRandomQuoteIndex();
-      if (!initialIndices.includes(randomIndex)) {
-        initialIndices.push(randomIndex);
-      }
-    }
+    const initialIndices = getRandomIndices();
     setRandomQuoteIndices(initialIndices);
   }, []);
 
-  useEffect(() => {
-    const initialIndices = [];
-    while (initialIndices.length < 5) {
+  function getRandomIndices() {
+    const indices = [];
+    while (indices.length < 5) {
       const randomIndex = getRandomQuoteIndex();
-      if (!initialIndices.includes(randomIndex)) {
-        initialIndices.push(randomIndex);
+      if (!indices.includes(randomIndex)) {
+        indices.push(randomIndex);
       }
     }
+    return indices;
+  }
+
+  useEffect(() => {
+    const initialIndices = getRandomIndices();
     setRandomQuoteIndices(initialIndices);
   }, []);
 
@@ -45,14 +55,27 @@ const HomeScreen = () => {
     return Math.floor(Math.random() * allQuotes.length);
   }
 
-  function changeRandomQuotes() {
-    const newIndices = [];
-    while (newIndices.length < 5) {
-      const randomIndex = getRandomQuoteIndex();
-      if (!newIndices.includes(randomIndex)) {
-        newIndices.push(randomIndex);
-      }
+  
+  async function saveQuotesAsImage() {
+    const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+    
+    if (status !== 'granted') {
+      console.error('Permission to access media library denied');
+      return;
     }
+
+    try {
+      const result = await viewShotRef.current.capture();
+      const asset = await MediaLibrary.createAssetAsync(result, 'quote_image');
+      await MediaLibrary.createAlbumAsync('Quotes', asset, false);
+      console.log('Quote image saved to gallery successfully');
+    } catch (error) {
+      console.error('Error saving quote image:', error);
+    }
+  }
+
+  function changeRandomQuotes() {
+    const newIndices = getRandomIndices();
     setRandomQuoteIndices(newIndices);
   }
 
@@ -67,12 +90,12 @@ const HomeScreen = () => {
   }
 
   function favouriteQuoteHandler(value) {
-    const updatedLikedQuotes = allQuotes.reduce((accumulator, currentQuote) => {
+    const updatedLikedQuotes = allQuotes.map((currentQuote) => {
       if (currentQuote._id === value.id) {
-        currentQuote.isLiked = value.isLiked; // Update isLiked property
+        return { ...currentQuote, isLiked: value.isLiked }; 
       }
-      return [...accumulator, currentQuote];
-    }, []);
+      return currentQuote;
+    });
 
     setAllQuotes(updatedLikedQuotes);
     AsyncStorage.setItem('quotes', JSON.stringify(updatedLikedQuotes))
@@ -82,29 +105,67 @@ const HomeScreen = () => {
       .catch((error) => console.error('Error in updating quote:', error));
   }
 
+  const viewShotRef = useRef();
+
   return (
     <SafeAreaView style={styles.container}>
       <Header text={'Quotes'} />
-      <ScrollView>
-        {randomQuoteIndices.map((index) => (
-          <QuoteCard
-            key={index}
-            quote={allQuotes[index]}
-            onDelete={deleteQuote}
-            favouriteQuoteHandler={favouriteQuoteHandler}
-          />
-        ))}
+      <ScrollView ref={scrollViewRef}>
+        <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
+          {randomQuoteIndices.map((index) => (
+            <QuoteCard
+              key={index}
+              quote={allQuotes[index]}
+              onDelete={deleteQuote}
+              favouriteQuoteHandler={favouriteQuoteHandler}
+            />
+          ))}
+        </ViewShot>
       </ScrollView>
-      <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity style={styles.saveButton} onPress={saveQuotesAsImage}>
+          <Text style={styles.saveButtonText}>Save to Gallery</Text>
+        </TouchableOpacity>
+        <MainButton style={styles.mainButton} title="Get New Quotes" onPress={changeRandomQuotes} />
+      </View>
     </SafeAreaView>
   );
+  
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F0F4FE',
+    position: 'relative',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 16,
+    width: '100%',
+  },
+  saveButton: {
+    backgroundColor: '#3498db',
+    padding: 16,
+    borderRadius: 50,
+    marginRight: 8, 
+  },
+  saveButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  mainButton: {
+    backgroundColor: '#2ecc71',
+    padding: 16,
+    borderRadius: 50,
+  },
+  mainButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
+
+
 
 export default HomeScreen;
