@@ -5,8 +5,9 @@ import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ViewShot from 'react-native-view-shot';
 import * as MediaLibrary from 'expo-media-library';
+import {Rating} from 'react-native-ratings';
 
-const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
+const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
   const viewShotRef = useRef();
 
   const handleDownload = async () => {
@@ -43,8 +44,15 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
   };
 
   const onLikeHandler = (value) => {
-    //Id and value
     favouriteQuoteHandler(value);
+  };
+
+  const handleRating = (value) => {
+    // Update the quote object with the new rating
+    const updatedQuote = {...quote, rating: value};
+    // console.log(value, quote)
+
+    updateRating(updatedQuote);
   };
 
   return (
@@ -62,6 +70,16 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
           <Text style={styles.textHead}>by: </Text>
           {quote.author}
         </Text>
+
+        <Rating
+          showRating
+          type="star"
+          fractions={0}
+          startingValue={0}
+          imageSize={20}
+          style={{paddingVertical: 10}}
+          onFinishRating={(value) => handleRating(value)}
+        />
       </ViewShot>
       <View style={styles.actionButtons}>
         <LikeButton quote={quote} onLikeHandler={(value) => onLikeHandler(value)} />

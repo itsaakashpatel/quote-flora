@@ -69,6 +69,22 @@ const Favourite = () => {
     setRefreshing(false);
   };
 
+  function updateRating(updatedQuote) {
+    const quoteIndex = allQuotes.findIndex((quote) => quote._id === updatedQuote._id);
+
+    if (quoteIndex !== -1) {
+      allQuotes[quoteIndex] = updatedQuote;
+
+      AsyncStorage.setItem('quotes', JSON.stringify(allQuotes))
+        .then(() => {
+          console.log('Rating updated and quotes saved successfully');
+        })
+        .catch((error) => console.error('Error updating rating:', error));
+    } else {
+      console.error('Quote not found for updating rating');
+    }
+  }
+
   return (
     <SafeAreaView>
       <Header text={'Your favourite Quotes'} />
@@ -81,6 +97,7 @@ const Favourite = () => {
             key={index}
             quote={item}
             onDelete={deleteQuote}
+            updateRating={updateRating}
             favouriteQuoteHandler={favouriteQuoteHandler}
           />
         )}
