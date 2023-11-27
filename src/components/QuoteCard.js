@@ -1,13 +1,11 @@
-
-
-import React, { useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Share } from 'react-native';
+import React, {useRef} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Alert, Share} from 'react-native';
 import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ViewShot from 'react-native-view-shot';
 import * as MediaLibrary from 'expo-media-library';
 
-const QuoteCard = ({ quote, onDelete, favouriteQuoteHandler }) => {
+const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
   const viewShotRef = useRef();
 
   const handleDownload = async () => {
@@ -53,17 +51,14 @@ const QuoteCard = ({ quote, onDelete, favouriteQuoteHandler }) => {
       const result = await Share.share({
         message,
       });
-  
+
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
-          
           console.log(`Shared via ${result.activityType}`);
         } else {
-         
           console.log('Shared successfully');
         }
       } else if (result.action === Share.dismissedAction) {
-        
         console.log('Share dismissed');
       }
     } catch (error) {
@@ -71,7 +66,6 @@ const QuoteCard = ({ quote, onDelete, favouriteQuoteHandler }) => {
       Alert.alert('Error', 'Failed to share quote. Please try again.');
     }
   };
-  
 
   return (
     <View style={styles.container}>
@@ -80,7 +74,6 @@ const QuoteCard = ({ quote, onDelete, favouriteQuoteHandler }) => {
         options={{
           fileName: `${quote.content.split(0, 10)}-${quote.author}`,
           format: 'png',
-          
         }}
       >
         <Text style={styles.text}>{quote.content}</Text>
