@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator} from 'react-native';
 import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
