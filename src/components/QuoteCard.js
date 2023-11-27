@@ -5,8 +5,10 @@ import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ViewShot from 'react-native-view-shot';
 import * as MediaLibrary from 'expo-media-library';
+import { useTheme } from '../contexts/ThemeContext';
 
 const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
+  const { currentTheme } = useTheme();
   const viewShotRef = useRef();
 
   const handleDownload = async () => {
@@ -48,7 +50,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: currentTheme.colors.quotecard }]}>
       <ViewShot
         ref={viewShotRef}
         options={{
@@ -57,9 +59,9 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler}) => {
           quality: 1,
         }}
       >
-        <Text style={styles.text}>{quote.content}</Text>
-        <Text style={styles.text}>
-          <Text style={styles.textHead}>by: </Text>
+        <Text style={[styles.text,  {color: currentTheme.colors.text}]}>{quote.content}</Text>
+        <Text style={[styles.text,  {color: currentTheme.colors.text}]}>
+          <Text style={[styles.text,  {color: currentTheme.colors.text}]}>by: </Text>
           {quote.author}
         </Text>
       </ViewShot>

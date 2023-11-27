@@ -5,8 +5,10 @@ import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
 import quotes from '../data/quotes.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HomeScreen = () => {
+  const { currentTheme } = useTheme();
   const [randomQuoteIndices, setRandomQuoteIndices] = useState([]);
   const [allQuotes, setAllQuotes] = useState([...quotes]);
 
@@ -83,7 +85,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
       <Header text={'Quotes'} />
       <ScrollView>
         {randomQuoteIndices.map((index) => (

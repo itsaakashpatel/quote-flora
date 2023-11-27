@@ -12,6 +12,9 @@ import Categories from './src/screens/Categories';
 import CategoryScreen from './src/screens/CategoryScreen';
 import SettingScreen from './src/screens/SettingScreen';
 
+import { ThemeProvider } from './src/contexts/ThemeContext';
+import { lightTheme, darkTheme } from './src/themes/themes';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -26,6 +29,7 @@ function CategoriesStack() {
 
 function App() {
   return (
+    <ThemeProvider>
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
@@ -75,6 +79,7 @@ function App() {
       </Tab.Navigator>
       {/* <Notification></Notification> */}
     </NavigationContainer>
+    </ThemeProvider>
   );
 }
 

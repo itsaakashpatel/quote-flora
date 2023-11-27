@@ -6,8 +6,11 @@ import Header from '../components/Header';
 import debounce from '../utils/debounce';
 import TYPES from '../utils/types';
 import SearchResult from '../components/SearchResult';
+import { useTheme } from '../contexts/ThemeContext';
+
 
 const SearchScreen = () => {
+  const { currentTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(TYPES.AUTHOR); // 0 for Authors, 1 for Quotes, 2 for Categories
   const [searchResults, setSearchResults] = useState([]);
@@ -71,7 +74,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
       <Header text={'Search'} />
       <TextInput
         placeholder="Search for authors, quotes, or categories"

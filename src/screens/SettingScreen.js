@@ -5,7 +5,15 @@ import Header from '../components/Header';
 import ModalSelector from 'react-native-modal-selector';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Notification from '../utilities/Notification';
+
+import { useTheme } from '../contexts/ThemeContext';
+import { lightTheme, darkTheme } from '../themes/themes';
+
 const SettingScreen = () => {
+
+  
+  const { currentTheme, toggleTheme } = useTheme();
+
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [notificationTime, setNotificationTime] = useState(new Date());
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
@@ -41,19 +49,20 @@ const SettingScreen = () => {
   }, [notificationEnabled, notificationTime, notificationFrequency]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
       <Header text={'Settings'} />
       <View style={styles.settingItem}>
-        <Text>Enable Notifications</Text>
+        <Text style={[styles.text,  {color: currentTheme.colors.text}]}>Enable Notifications</Text>
         <Switch value={notificationEnabled} onValueChange={toggleNotification} />
       </View>
       <View style={styles.settingItem}>
-        <Text>Notification Time</Text>
+        <Text style={[styles.text,  {color: currentTheme.colors.text}]}>Notification Time</Text>
         <TouchableOpacity onPress={showTimePicker}>
-          <Text>{notificationTime.toLocaleTimeString()}</Text>
+          <Text style={[styles.text,  {color: currentTheme.colors.text}]}>{notificationTime.toLocaleTimeString()}</Text>
         </TouchableOpacity>
         {showTimePicker && (
           <DateTimePicker
+          style={[styles.text,  {color: currentTheme.colors.text}]}
             value={notificationTime}
             mode="time"
             display="default"
@@ -62,7 +71,7 @@ const SettingScreen = () => {
         )}
       </View>
       <View style={styles.settingItem}>
-        <Text>Notification Frequency</Text>
+        <Text style={[styles.text,  {color: currentTheme.colors.text}]}>Notification Frequency</Text>
         <ModalSelector
           data={frequencyOptions}
           initValue={notificationFrequency}
@@ -74,6 +83,11 @@ const SettingScreen = () => {
           notificationFrequency={notificationFrequency}
           isNotificationEnabled={notificationEnabled}
         />
+        
+      </View>
+      <View style={styles.settingItem}>
+        <Text style={[styles.text,  {color: currentTheme.colors.text}]}>Theme</Text>
+        <Switch value={currentTheme === darkTheme} onValueChange={toggleTheme} />
       </View>
     </SafeAreaView>
   );
@@ -91,6 +105,9 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#DDD',
+  },
+  text:{
+    color: 'black'
   },
 });
 
