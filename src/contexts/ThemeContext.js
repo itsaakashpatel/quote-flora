@@ -1,7 +1,7 @@
 // ThemeContext.js
 
-import React, { createContext, useContext, useState } from 'react';
-import { lightTheme, darkTheme } from '../themes/themes'; // Adjust the import path
+import React, {createContext, useContext, useState} from 'react';
+import {lightTheme, darkTheme} from '../themes/themes'; // Adjust the import path
 
 const ThemeContext = createContext();
 
@@ -13,7 +13,7 @@ export const useTheme = () => {
   return context;
 };
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeProvider = ({children}) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const toggleTheme = () => {
@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children }) => {
   const currentTheme = isDarkTheme ? darkTheme : lightTheme;
 
   return (
-    <ThemeContext.Provider value={{ toggleTheme, isDarkTheme, currentTheme }}>
+    <ThemeContext.Provider value={{toggleTheme, isDarkTheme, currentTheme}}>
       {children}
     </ThemeContext.Provider>
   );

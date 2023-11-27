@@ -2,11 +2,10 @@ import React from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView} from 'react-native';
 import categories from '../data/categories.json';
 import {useNavigation} from '@react-navigation/native';
-import { useTheme } from '../contexts/ThemeContext';
-
+import {useTheme} from '../contexts/ThemeContext';
 
 const Categories = () => {
-   const { currentTheme } = useTheme();
+  const {currentTheme} = useTheme();
   const navigation = useNavigation();
 
   const navigateToCategory = (categoryName) => {
@@ -14,8 +13,8 @@ const Categories = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
-      <Text style={[styles.header,  {color: currentTheme.colors.text }]}>Categories</Text>
+    <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
+      <Text style={[styles.header, {color: currentTheme.colors.text}]}>Categories</Text>
       <FlatList
         data={categories}
         keyExtractor={(item) => item._id}

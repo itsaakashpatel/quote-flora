@@ -1,15 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import LikeButton from './LikeButtons';
-import { useTheme } from '../contexts/ThemeContext';
-
+import {useTheme} from '../contexts/ThemeContext';
 
 const AuthorDetails = ({author}) => {
-  const { currentTheme } = useTheme();
+  const {currentTheme} = useTheme();
   return (
-    <View style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
-      <Text style={[styles.text, { text: currentTheme.colors.text }]}>Quote: {author.content}</Text>
-      <Text style={[styles.text, { text: currentTheme.colors.text }]}>Author: {author.author}</Text>
+    <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
+      <Text style={[styles.text, {text: currentTheme.colors.text}]}>Quote: {author.content}</Text>
+      <Text style={[styles.text, {text: currentTheme.colors.text}]}>Author: {author.author}</Text>
       <LikeButton />
     </View>
   );
