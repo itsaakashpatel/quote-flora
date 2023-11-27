@@ -4,7 +4,8 @@ import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ViewShot from 'react-native-view-shot';
 import * as MediaLibrary from 'expo-media-library';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import {Rating} from 'react-native-ratings';
+
 const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
   const viewShotRef = useRef();
 
