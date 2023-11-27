@@ -5,8 +5,8 @@ import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ViewShot from 'react-native-view-shot';
 import * as MediaLibrary from 'expo-media-library';
-import { Rating, AirbnbRating } from 'react-native-ratings';
-const QuoteCard = ({quote, onDelete, favouriteQuoteHandler,updateRating}) => {
+import {Rating, AirbnbRating} from 'react-native-ratings';
+const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
   const viewShotRef = useRef();
 
   const handleDownload = async () => {
@@ -43,16 +43,13 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler,updateRating}) => {
   };
 
   const onLikeHandler = (value) => {
- 
     favouriteQuoteHandler(value);
   };
 
   const handleRating = (value) => {
     // Update the quote object with the new rating
-    const updatedQuote = { ...quote, rating: value };
+    const updatedQuote = {...quote, rating: value};
     // console.log(value, quote)
-
-
 
     updateRating(updatedQuote);
   };
@@ -77,13 +74,11 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler,updateRating}) => {
           showRating
           type="star"
           fractions={0}
-          startingValue={0} 
+          startingValue={0}
           imageSize={20}
-          style={{ paddingVertical: 10 }}
-          onFinishRating={(value) => handleRating(value)} 
+          style={{paddingVertical: 10}}
+          onFinishRating={(value) => handleRating(value)}
         />
-
-        
       </ViewShot>
       <View style={styles.actionButtons}>
         <LikeButton quote={quote} onLikeHandler={(value) => onLikeHandler(value)} />

@@ -65,25 +65,24 @@ const HomeScreen = () => {
       })
       .catch((error) => console.error('Error deleting quote:', error));
   }
-//!
-  function updateRating(updatedQuote){
+  //!
+  function updateRating(updatedQuote) {
     const quoteIndex = allQuotes.findIndex((quote) => quote._id === updatedQuote._id);
 
-  // If the quote is found, update the rating
-  if (quoteIndex !== -1) {
-    // Update the quote in the array
-    allQuotes[quoteIndex] = updatedQuote;
+    // If the quote is found, update the rating
+    if (quoteIndex !== -1) {
+      // Update the quote in the array
+      allQuotes[quoteIndex] = updatedQuote;
 
-    // Save the updated quotes to AsyncStorage
-    AsyncStorage.setItem('quotes', JSON.stringify(allQuotes))
-      .then(() => {
-        console.log('Rating updated and quotes saved successfully');
-      })
-      .catch((error) => console.error('Error updating rating:', error));
-  } else {
-    console.error('Quote not found for updating rating');
-  }
-
+      // Save the updated quotes to AsyncStorage
+      AsyncStorage.setItem('quotes', JSON.stringify(allQuotes))
+        .then(() => {
+          console.log('Rating updated and quotes saved successfully');
+        })
+        .catch((error) => console.error('Error updating rating:', error));
+    } else {
+      console.error('Quote not found for updating rating');
+    }
   }
 
   function favouriteQuoteHandler(value) {
@@ -101,9 +100,6 @@ const HomeScreen = () => {
       })
       .catch((error) => console.error('Error in updating quote:', error));
   }
-
-
-  
 
   return (
     <SafeAreaView style={styles.container}>

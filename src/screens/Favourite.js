@@ -69,25 +69,20 @@ const Favourite = () => {
     setRefreshing(false);
   };
 
-
-  function updateRating(updatedQuote){
+  function updateRating(updatedQuote) {
     const quoteIndex = allQuotes.findIndex((quote) => quote._id === updatedQuote._id);
 
-  
-  if (quoteIndex !== -1) {
-   
-    allQuotes[quoteIndex] = updatedQuote;
+    if (quoteIndex !== -1) {
+      allQuotes[quoteIndex] = updatedQuote;
 
-   
-    AsyncStorage.setItem('quotes', JSON.stringify(allQuotes))
-      .then(() => {
-        console.log('Rating updated and quotes saved successfully');
-      })
-      .catch((error) => console.error('Error updating rating:', error));
-  } else {
-    console.error('Quote not found for updating rating');
-  }
-
+      AsyncStorage.setItem('quotes', JSON.stringify(allQuotes))
+        .then(() => {
+          console.log('Rating updated and quotes saved successfully');
+        })
+        .catch((error) => console.error('Error updating rating:', error));
+    } else {
+      console.error('Quote not found for updating rating');
+    }
   }
 
   return (
