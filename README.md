@@ -15,7 +15,7 @@ Embark on a journey of inspiration and wisdom with QuoteFlora, a comprehensive q
 4. **Ashika Trambadiya**
    - Github: [github.com/Ashika213](https://github.com/Ashika213)
 
-## Features
+## Features:
 
 ### Quote Database
 
