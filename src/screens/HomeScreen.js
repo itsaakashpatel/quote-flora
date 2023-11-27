@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator } from 'react-native';
 import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
@@ -68,7 +68,7 @@ const HomeScreen = () => {
         console.error('Error deleting quote:', error);
       });
   }
-  //!
+
   function updateRating(updatedQuote) {
     const quoteIndex = allQuotes.findIndex((quote) => quote._id === updatedQuote._id);
 
