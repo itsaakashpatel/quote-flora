@@ -1,6 +1,5 @@
-//QuoteCard.js
 import React, {useRef} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert, Share} from 'react-native';
 import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ViewShot from 'react-native-view-shot';
@@ -57,6 +56,28 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
 
     updateRating(updatedQuote);
   };
+  
+  const handleShare = async () => {
+    try {
+      const message = `${quote.content} - by ${quote.author}`;
+      const result = await Share.share({
+        message,
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log(`Shared via ${result.activityType}`);
+        } else {
+          console.log('Shared successfully');
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log('Share dismissed');
+      }
+    } catch (error) {
+      console.error('Error sharing quote:', error);
+      Alert.alert('Error', 'Failed to share quote. Please try again.');
+    }
+  };
 
   return (
     <View style={[styles.container, {backgroundColor: currentTheme.colors.quotecard}]}>
@@ -65,7 +86,6 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
         options={{
           fileName: `${quote.content.split(0, 10)}-${quote.author}`,
           format: 'png',
-          quality: 1,
         }}
       >
         <Text style={[styles.text, {color: currentTheme.colors.text}]}>{quote.content}</Text>
@@ -91,6 +111,9 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
         </TouchableOpacity>
         <TouchableOpacity onPress={handleDownload}>
           <Icon name="download" size={22} color="grey" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleShare}>
+          <Icon name="share" size={22} color="green" />
         </TouchableOpacity>
       </View>
     </View>
