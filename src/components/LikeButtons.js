@@ -2,8 +2,10 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useTheme} from '../contexts/ThemeContext';
 
 const LikeButton = ({quote, onLikeHandler}) => {
+  const {currentTheme} = useTheme();
   const toggleLike = () => {
     // setIsLikedQuote(quote.isLiked ? false: true)
     onLikeHandler({
@@ -15,7 +17,7 @@ const LikeButton = ({quote, onLikeHandler}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
       <TouchableOpacity onPress={toggleLike}>
         <Icon
           name={quote.isLiked ? 'heart' : 'heart-o'}

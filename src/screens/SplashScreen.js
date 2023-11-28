@@ -1,7 +1,9 @@
 import React, {useEffect} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {useTheme} from '../contexts/ThemeContext';
 
 const SplashScreen = ({navigation}) => {
+  const {currentTheme} = useTheme();
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('HomeScreen');
@@ -9,7 +11,7 @@ const SplashScreen = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
       <Image source={require('../assets/QuoteIcon.png')} style={styles.image} />
       <Text style={styles.text}>Quote Flora</Text>
     </View>

@@ -11,8 +11,10 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import QuoteCard from '../components/QuoteCard';
 import Header from '../components/Header';
+import {useTheme} from '../contexts/ThemeContext';
 
 const Favourite = () => {
+  const {currentTheme} = useTheme();
   const [likedQuotes, setLikedQuotes] = useState([]);
   const [allQuotes, setAllQuotes] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -86,7 +88,7 @@ const Favourite = () => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
       <Header text={'Your favourite Quotes'} />
       <FlatList
         style={styles.container}
@@ -109,7 +111,7 @@ const Favourite = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F0F4FE',
+    // backgroundColor: '#F0F4FE',
   },
 });
 
