@@ -53,7 +53,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
 
     updateRating(updatedQuote);
   };
-
+  
   const handleShare = async () => {
     try {
       const message = `${quote.content} - by ${quote.author}`;
