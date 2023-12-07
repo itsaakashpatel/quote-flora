@@ -32,7 +32,10 @@
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-vector-icons": "^10.0.0",
-    "react-native-view-shot": "3.7.0"
+    "react-native-view-shot": "3.7.0",
+    "react-native-web": "~0.19.6",
+    "react-dom": "18.2.0",
+    "@expo/webpack-config": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

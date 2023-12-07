@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 function CategoriesStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Categorie" component={Categories} />
+      <Stack.Screen name="Categorie" options={{headerShown: false}} component={Categories} />
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} headerShown={false} />
     </Stack.Navigator>
   );
