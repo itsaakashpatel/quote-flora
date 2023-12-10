@@ -11,6 +11,7 @@ import Favourite from './src/screens/Favourite';
 import Categories from './src/screens/Categories';
 import CategoryScreen from './src/screens/CategoryScreen';
 import SettingScreen from './src/screens/SettingScreen';
+import AuthorScreen from './src/screens/AuthorScreen';
 
 import {ThemeProvider} from './src/contexts/ThemeContext';
 import {lightTheme, darkTheme} from './src/themes/themes';
@@ -18,12 +19,55 @@ import {lightTheme, darkTheme} from './src/themes/themes';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function CategoriesStack() {
+function TabNavigation() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Categorie" options={{headerShown: false}} component={Categories} />
-      <Stack.Screen name="CategoryScreen" component={CategoryScreen} headerShown={false} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="HomeRootScreen"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          headerShown: false,
+          tabBarIcon: ({color, size}) => <Icon name="home" color={color} size={size} />,
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color, size}) => <Icon name="search" color={color} size={size} />,
+        }}
+      />
+      <Tab.Screen
+        name="Favourite"
+        component={Favourite}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Favourite',
+          tabBarIcon: ({color, size}) => <Icon name="star" color={color} size={size} />,
+        }}
+      />
+      <Tab.Screen
+        name="Categories"
+        component={Categories}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Categories',
+          tabBarIcon: ({color, size}) => <Icon name="folder" color={color} size={size} />,
+        }}
+      />
+      <Tab.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Setting',
+          tabBarIcon: ({color, size}) => <Ionicons name="settings" size={size} color={color} />,
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
@@ -31,53 +75,47 @@ function App() {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
+        <Stack.Navigator>
+          <Stack.Screen
             name="Home"
-            component={HomeScreen}
+            component={TabNavigation}
             options={{
               headerShown: false,
               tabBarIcon: ({color, size}) => <Icon name="home" color={color} size={size} />,
             }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Search"
-            component={SearchScreen}
+            component={TabNavigation}
             options={{
               headerShown: false,
-              tabBarLabel: 'Search',
-              tabBarIcon: ({color, size}) => <Icon name="search" color={color} size={size} />,
             }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Favourite"
-            component={Favourite}
+            component={TabNavigation}
             options={{
               headerShown: false,
-              tabBarLabel: 'Favourite',
-              tabBarIcon: ({color, size}) => <Icon name="star" color={color} size={size} />,
             }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Categories"
-            component={CategoriesStack}
+            component={TabNavigation}
             options={{
               headerShown: false,
-              tabBarLabel: 'Categories',
-              tabBarIcon: ({color, size}) => <Icon name="folder" color={color} size={size} />,
             }}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Setting"
-            component={SettingScreen}
+            component={TabNavigation}
             options={{
               headerShown: false,
-              tabBarLabel: 'Setting',
-              tabBarIcon: ({color, size}) => <Ionicons name="settings" size={size} color={color} />,
             }}
           />
-        </Tab.Navigator>
-        {/* <Notification></Notification> */}
+          <Stack.Screen name="Categorie" options={{headerShown: false}} component={Categories} />
+          <Stack.Screen name="CategoryScreen" component={CategoryScreen} headerShown={false} />
+          <Stack.Screen name="Author" component={AuthorScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );

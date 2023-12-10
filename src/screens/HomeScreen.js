@@ -15,7 +15,6 @@ const HomeScreen = () => {
     const fetchData = async () => {
       try {
         const jsonQuotes = await AsyncStorage.getItem('quotes');
-        console.log('Fetching quotes', {jsonQuotes});
         if (jsonQuotes !== null) {
           const parsedQuotes = JSON.parse(jsonQuotes);
           setAllQuotes(parsedQuotes);
