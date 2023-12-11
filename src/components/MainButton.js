@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '70%',
     padding: 15,
+    marginVertical: 10,
   },
   buttonText: {
     color: 'black',
