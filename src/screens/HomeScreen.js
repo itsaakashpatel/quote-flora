@@ -24,6 +24,12 @@ const HomeScreen = () => {
         if (jsonQuotes !== null) {
           const parsedQuotes = JSON.parse(jsonQuotes);
           setAllQuotes(parsedQuotes);
+        } else {
+          //set quotes from data folder to local storage
+          const quotes = require('../data/quotes.json');
+          await AsyncStorage.setItem('quotes', JSON.stringify(quotes));
+          const jsonQuotes = await AsyncStorage.getItem('quotes');
+          setAllQuotes(JSON.parse(jsonQuotes));
         }
       } catch (error) {
         console.error('Error loading quotes:', error);
@@ -150,8 +156,6 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
-      <Header text={'Quotes'} />
-     
       {allQuotes.length > 0 ? (
         <>
           <ScrollView style={styles.scrollView}>
