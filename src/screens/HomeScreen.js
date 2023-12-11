@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator} from 'react-native';
-import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,6 +18,12 @@ const HomeScreen = () => {
         if (jsonQuotes !== null) {
           const parsedQuotes = JSON.parse(jsonQuotes);
           setAllQuotes(parsedQuotes);
+        } else {
+          //set quotes from data folder to local storage
+          const quotes = require('../data/quotes.json');
+          await AsyncStorage.setItem('quotes', JSON.stringify(quotes));
+          const jsonQuotes = await AsyncStorage.getItem('quotes');
+          setAllQuotes(JSON.parse(jsonQuotes));
         }
       } catch (error) {
         console.error('Error loading quotes:', error);
@@ -41,7 +46,7 @@ const HomeScreen = () => {
       }
       setRandomQuoteIndices(newIndices);
     }
-  }, []);
+  }, [allQuotes]);
 
   function getRandomQuoteIndex() {
     return Math.floor(Math.random() * allQuotes.length);
@@ -118,7 +123,6 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-      <Header text={'Quotes'} />
       {allQuotes.length > 0 ? (
         <>
           <ScrollView>
@@ -136,7 +140,7 @@ const HomeScreen = () => {
         </>
       ) : (
         <View style={styles.container}>
-          <Text>No quotes available</Text>
+          <Text>No quotes available!</Text>
         </View>
       )}
     </SafeAreaView>
