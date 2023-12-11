@@ -1,14 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator, TouchableOpacity, Modal, TextInput} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+} from 'react-native';
 import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTheme} from '../contexts/ThemeContext';
 
-
 const HomeScreen = () => {
-  const { currentTheme } = useTheme();
+  const {currentTheme} = useTheme();
   const [randomQuoteIndices, setRandomQuoteIndices] = useState([]);
   const [allQuotes, setAllQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -121,18 +130,18 @@ const HomeScreen = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const saveNewQuote =async () => {
+  const saveNewQuote = async () => {
     if (newQuote.trim() !== '') {
       const newQuoteObject = {
         _id: Date.now().toString(),
         content: newQuote,
-        author: "me", 
-        categories: ["self"], 
+        author: 'me',
+        categories: ['self'],
       };
-  
+
       const newQuotesArray = [...allQuotes, newQuoteObject];
       setAllQuotes(newQuotesArray);
-      
+
       try {
         await AsyncStorage.setItem('quotes', JSON.stringify(newQuotesArray));
         console.log('New quote saved successfully');
@@ -140,11 +149,10 @@ const HomeScreen = () => {
         console.error('Error saving new quote:', error);
       }
     }
-  
+
     setNewQuote('');
     toggleModal();
   };
-  
 
   if (loading) {
     return (
@@ -155,7 +163,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
       {allQuotes.length > 0 ? (
         <>
           <ScrollView style={styles.scrollView}>
@@ -169,8 +177,8 @@ const HomeScreen = () => {
               />
             ))}
           </ScrollView>
-         
-              <MainButton title="Write Your Quote" onPress={toggleModal}></MainButton>
+
+          <MainButton title="Write Your Quote" onPress={toggleModal} />
           <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />
         </>
       ) : (
@@ -190,11 +198,17 @@ const HomeScreen = () => {
             onChangeText={(text) => setNewQuote(text)}
           />
           <View style={styles.modalButtonsContainer}>
-            <TouchableOpacity onPress={saveNewQuote} style={[styles.modalButton, { backgroundColor: 'green' }]}>
-              <Text style={{ color: 'white' }}>Save</Text>
+            <TouchableOpacity
+              onPress={saveNewQuote}
+              style={[styles.modalButton, {backgroundColor: 'green'}]}
+            >
+              <Text style={{color: 'white'}}>Save</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={toggleModal} style={[styles.modalButton, { backgroundColor: 'red' }]}>
-              <Text style={{ color: 'white' }}>Close</Text>
+            <TouchableOpacity
+              onPress={toggleModal}
+              style={[styles.modalButton, {backgroundColor: 'red'}]}
+            >
+              <Text style={{color: 'white'}}>Close</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -252,5 +266,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-
-
