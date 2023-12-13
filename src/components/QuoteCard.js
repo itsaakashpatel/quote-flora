@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Alert, Share} from 'react-native';
 import LikeButton from './LikeButtons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,10 +7,36 @@ import * as MediaLibrary from 'expo-media-library';
 import {Rating} from 'react-native-ratings';
 import {useTheme} from '../contexts/ThemeContext';
 
+
+
 const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
   const {currentTheme} = useTheme();
 
   const viewShotRef = useRef();
+  const [currentLanguage, setcurrentLanguage] = useState("english")
+  const [currentQuote, setcurrentQuote] = useState(quote.content)
+
+
+ 
+  
+
+  const changeLanguage = async () => {
+    if (currentLanguage === "english") {
+      setcurrentLanguage("french");
+      // translate quote
+     
+      console.log(`quote == ${quote}`)
+      setcurrentQuote("quote in french");
+    } else if (currentLanguage === "french") {
+      setcurrentLanguage("english");
+      // quote in english
+      setcurrentQuote(quote.content);
+    }
+  
+
+    console.log(currentLanguage)
+    console.log("current quote :- " ,currentQuote)
+  }
 
   const handleDownload = async () => {
     try {
@@ -88,7 +114,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
           format: 'png',
         }}
       >
-        <Text style={[styles.text, {color: currentTheme.colors.text}]}>{quote.content}</Text>
+        <Text style={[styles.text, {color: currentTheme.colors.text}]}>{(currentQuote)}</Text>
         <Text style={[styles.text, {color: currentTheme.colors.text}]}>
           <Text style={[styles.text, {color: currentTheme.colors.text}]}>by: </Text>
           {quote.author}
@@ -115,6 +141,12 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
         <TouchableOpacity onPress={handleShare}>
           <Icon name="share" size={22} color="green" />
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={changeLanguage}>
+          <Icon name='exchange' size={22}></Icon>
+        </TouchableOpacity>
+
+
       </View>
     </View>
   );
