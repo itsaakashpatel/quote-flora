@@ -79,7 +79,7 @@ function App() {
 
     loadAsync();
   }, []);
-  
+
   return (
     <ThemeProvider>
       <NavigationContainer>

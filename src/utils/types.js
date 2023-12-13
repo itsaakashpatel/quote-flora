@@ -1,4 +1,3 @@
-
 export default TYPES = {
   CATEGORIES: 'CATEGORIES',
   AUTHOR: 'AUTHOR',

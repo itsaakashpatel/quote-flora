@@ -221,7 +221,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   // text: {
-  //   fontFamily: 'NunitoRegular', 
+  //   fontFamily: 'NunitoRegular',
   //   fontSize: 16,
   //   color: 'black',
   // },
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 12, 
+    paddingHorizontal: 12,
   },
 });
 

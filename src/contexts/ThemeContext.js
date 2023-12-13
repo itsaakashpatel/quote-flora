@@ -22,13 +22,15 @@ export const ThemeProvider = ({children}) => {
   };
 
   const selectedFont = () => {
-    setCurrentFont("nutino")
-  }
+    setCurrentFont('nutino');
+  };
 
   const currentTheme = isDarkTheme ? darkTheme : lightTheme;
 
   return (
-    <ThemeContext.Provider value={{toggleTheme, isDarkTheme, currentTheme, currentFont, selectedFont}}>
+    <ThemeContext.Provider
+      value={{toggleTheme, isDarkTheme, currentTheme, currentFont, selectedFont}}
+    >
       {children}
     </ThemeContext.Provider>
   );

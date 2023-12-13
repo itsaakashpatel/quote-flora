@@ -19,10 +19,9 @@ const SettingScreen = () => {
   const [selectedTextStyle, setSelectedTextStyle] = useState('normal'); // Add this state
 
   const textStyleOptions = [
-    { key: 'normal', label: 'Normal' },
-    { key: 'nutino', label: 'Nutino' },
+    {key: 'normal', label: 'Normal'},
+    {key: 'nutino', label: 'Nutino'},
   ];
-
 
   const frequencyOptions = [
     {key: 'daily', label: 'Daily'},
@@ -97,14 +96,13 @@ const SettingScreen = () => {
       </View>
 
       <View style={styles.settingItem}>
-        <Text style={[styles.text, { color: currentTheme.colors.text }]}>Text Style</Text>
+        <Text style={[styles.text, {color: currentTheme.colors.text}]}>Text Style</Text>
         <ModalSelector
           data={textStyleOptions}
           initValue={selectedTextStyle}
           onChange={(option) => setSelectedTextStyle(option.key)}
         />
       </View>
-      
     </SafeAreaView>
   );
 };
