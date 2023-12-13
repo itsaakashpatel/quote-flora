@@ -1,5 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, SafeAreaView, ScrollView, Text, ActivityIndicator} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+} from 'react-native';
 import Header from '../components/Header';
 import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
@@ -15,6 +25,10 @@ const HomeScreen = () => {
   const [allQuotes, setAllQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // New states for the modal
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [newQuote, setNewQuote] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,6 +36,12 @@ const HomeScreen = () => {
         if (jsonQuotes !== null) {
           const parsedQuotes = JSON.parse(jsonQuotes);
           setAllQuotes(parsedQuotes);
+        } else {
+          //set quotes from data folder to local storage
+          const quotes = require('../data/quotes.json');
+          await AsyncStorage.setItem('quotes', JSON.stringify(quotes));
+          const jsonQuotes = await AsyncStorage.getItem('quotes');
+          setAllQuotes(JSON.parse(jsonQuotes));
         }
       } catch (error) {
         console.error('Error loading quotes:', error);
@@ -44,13 +64,11 @@ const HomeScreen = () => {
       }
       setRandomQuoteIndices(newIndices);
     }
-  }, []);
+  }, [allQuotes]);
 
-  function getRandomQuoteIndex() {
-    return Math.floor(Math.random() * allQuotes.length);
-  }
+  const getRandomQuoteIndex = () => Math.floor(Math.random() * allQuotes.length);
 
-  function changeRandomQuotes() {
+  const changeRandomQuotes = () => {
     const newIndices = [];
     while (newIndices.length < 5) {
       const randomIndex = getRandomQuoteIndex();
@@ -59,9 +77,9 @@ const HomeScreen = () => {
       }
     }
     setRandomQuoteIndices(newIndices);
-  }
+  };
 
-  function deleteQuote(quoteId) {
+  const deleteQuote = (quoteId) => {
     const updatedQuotes = allQuotes.filter((quote) => quote._id !== quoteId);
     setAllQuotes(updatedQuotes);
 
@@ -72,9 +90,9 @@ const HomeScreen = () => {
       .catch((error) => {
         console.error('Error deleting quote:', error);
       });
-  }
+  };
 
-  function updateRating(updatedQuote) {
+  const updateRating = (updatedQuote) => {
     const quoteIndex = allQuotes.findIndex((quote) => quote._id === updatedQuote._id);
 
     // If the quote is found, update the rating
@@ -91,9 +109,9 @@ const HomeScreen = () => {
     } else {
       console.error('Quote not found for updating rating');
     }
-  }
+  };
 
-  function favouriteQuoteHandler(value) {
+  const favouriteQuoteHandler = (value) => {
     const updatedLikedQuotes = allQuotes.reduce((accumulator, currentQuote) => {
       if (currentQuote._id === value.id) {
         currentQuote.isLiked = value.isLiked; 
@@ -109,7 +127,35 @@ const HomeScreen = () => {
       .catch((error) => {
         console.error('Error in updating quote:', error);
       });
-  }
+  };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const saveNewQuote = async () => {
+    if (newQuote.trim() !== '') {
+      const newQuoteObject = {
+        _id: Date.now().toString(),
+        content: newQuote,
+        author: 'me',
+        categories: ['self'],
+      };
+
+      const newQuotesArray = [...allQuotes, newQuoteObject];
+      setAllQuotes(newQuotesArray);
+
+      try {
+        await AsyncStorage.setItem('quotes', JSON.stringify(newQuotesArray));
+        console.log('New quote saved successfully');
+      } catch (error) {
+        console.error('Error saving new quote:', error);
+      }
+    }
+
+    setNewQuote('');
+    toggleModal();
+  };
 
   if (loading) {
     return (
@@ -120,11 +166,10 @@ const HomeScreen = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
-      <Header text={t('quotes')} />
+    <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
       {allQuotes.length > 0 ? (
         <>
-          <ScrollView>
+          <ScrollView style={styles.scrollView}>
             {randomQuoteIndices.map((index) => (
               <QuoteCard
                 key={index}
@@ -135,6 +180,7 @@ const HomeScreen = () => {
               />
             ))}
           </ScrollView>
+<MainButton  title={t('writeYourQuote')} onPress={toggleModal} />
           <MainButton title={t('getNewQuotes')} onPress={changeRandomQuotes} />
         </>
       ) : (
@@ -142,15 +188,81 @@ const HomeScreen = () => {
           <Text>{t('noQuotesAvailable')}</Text>
         </View>
       )}
+
+      {/* Modal for writing a new quote */}
+      <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+        <View style={styles.modalContainer}>
+          <TextInput
+            placeholder="Write your quote here"
+            style={styles.input}
+            multiline
+            value={newQuote}
+            onChangeText={(text) => setNewQuote(text)}
+          />
+          <View style={styles.modalButtonsContainer}>
+            <TouchableOpacity
+              onPress={saveNewQuote}
+              style={[styles.modalButton, {backgroundColor: 'green'}]}
+            >
+              <Text style={{color: 'white'}}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={toggleModal}
+              style={[styles.modalButton, {backgroundColor: 'red'}]}
+            >
+              <Text style={{color: 'white'}}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0F4FE',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  writeQuoteButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    padding: 10,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+  },
+  scrollView: {
+    flex: 1,
+    width: '100%',
+  },
+  noQuotesContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  input: {
+    width: '80%',
+    height: 100,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+  },
+  modalButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '80%',
+  },
+  modalButton: {
+    padding: 10,
+    borderRadius: 5,
   },
 });
 
