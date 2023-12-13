@@ -20,8 +20,7 @@ const SettingScreen = () => {
 
   const textStyleOptions = [
     { key: 'normal', label: 'Normal' },
-    { key: 'italic', label: 'Italic' },
-    { key: 'bold', label: 'Bold' },
+    { key: 'nutino', label: 'Nutino' },
   ];
 
 

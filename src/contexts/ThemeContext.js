@@ -15,15 +15,20 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({children}) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [currentFont, setCurrentFont] = useState(null); //Default font
 
   const toggleTheme = () => {
     setIsDarkTheme((prev) => !prev);
   };
 
+  const selectedFont = () => {
+    setCurrentFont("nutino")
+  }
+
   const currentTheme = isDarkTheme ? darkTheme : lightTheme;
 
   return (
-    <ThemeContext.Provider value={{toggleTheme, isDarkTheme, currentTheme}}>
+    <ThemeContext.Provider value={{toggleTheme, isDarkTheme, currentTheme, currentFont, selectedFont}}>
       {children}
     </ThemeContext.Provider>
   );
