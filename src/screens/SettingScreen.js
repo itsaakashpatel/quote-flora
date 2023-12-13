@@ -16,6 +16,14 @@ const SettingScreen = () => {
   const [notificationTime, setNotificationTime] = useState(new Date());
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
   const [notificationFrequency, setNotificationFrequency] = useState('daily');
+  const [selectedTextStyle, setSelectedTextStyle] = useState('normal'); // Add this state
+
+  const textStyleOptions = [
+    { key: 'normal', label: 'Normal' },
+    { key: 'italic', label: 'Italic' },
+    { key: 'bold', label: 'Bold' },
+  ];
+
 
   const frequencyOptions = [
     {key: 'daily', label: 'Daily'},
@@ -85,9 +93,19 @@ const SettingScreen = () => {
         />
       </View>
       <View style={styles.settingItem}>
-        <Text style={[styles.text, {color: currentTheme.colors.text}]}>Theme</Text>
+        <Text style={[styles.text, {color: currentTheme.colors.text}]}>Dark Theme Mode</Text>
         <Switch value={currentTheme === darkTheme} onValueChange={toggleTheme} />
       </View>
+
+      <View style={styles.settingItem}>
+        <Text style={[styles.text, { color: currentTheme.colors.text }]}>Text Style</Text>
+        <ModalSelector
+          data={textStyleOptions}
+          initValue={selectedTextStyle}
+          onChange={(option) => setSelectedTextStyle(option.key)}
+        />
+      </View>
+      
     </SafeAreaView>
   );
 };

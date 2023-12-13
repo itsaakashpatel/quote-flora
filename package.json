@@ -11,7 +11,8 @@
     "lint": "prettier --check ."
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "1.18.2",
+    "@expo/webpack-config": "^19.0.0",
+    "@react-native-async-storage/async-storage": "^1.18.2",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
@@ -23,6 +24,7 @@
     "expo-status-bar": "~1.6.0",
     "material-icons": "^1.13.12",
     "react": "^18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "^0.72.6",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-modal-selector": "^2.1.2",
@@ -31,11 +33,9 @@
     "react-native-reanimated": "^3.5.4",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^3.5.2",
-    "react-native-vector-icons": "^10.0.0",
+    "react-native-vector-icons": "^10.0.2",
     "react-native-view-shot": "3.7.0",
-    "react-native-web": "~0.19.6",
-    "react-dom": "18.2.0",
-    "@expo/webpack-config": "^19.0.0"
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -178,8 +178,10 @@ const HomeScreen = () => {
             ))}
           </ScrollView>
 
-          <MainButton title="Write Your Quote" onPress={toggleModal} />
-          <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />
+          <View style={styles.buttonContainer}>
+            <MainButton title="Write Your Quote" onPress={toggleModal} />
+            <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />
+          </View>
         </>
       ) : (
         <View style={styles.noQuotesContainer}>
@@ -218,6 +220,11 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // text: {
+  //   fontFamily: 'NunitoRegular', 
+  //   fontSize: 16,
+  //   color: 'black',
+  // },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -257,11 +264,16 @@ const styles = StyleSheet.create({
   modalButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '80%',
+    width: '50%',
   },
   modalButton: {
     padding: 10,
     borderRadius: 5,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12, 
   },
 });
 

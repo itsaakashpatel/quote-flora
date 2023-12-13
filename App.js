@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -72,6 +72,14 @@ function TabNavigation() {
 }
 
 function App() {
+  useEffect(() => {
+    const loadAsync = async () => {
+      await loadFonts();
+    };
+
+    loadAsync();
+  }, []);
+  
   return (
     <ThemeProvider>
       <NavigationContainer>
