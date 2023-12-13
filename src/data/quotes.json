@@ -1,7 +1,9 @@
 [
   {
     "_id": "WQbJJwEFP1l9",
-    "content": "In the depth of winter, I finally learned that there was within me an invincible summer.",
+    "content":{"en": "In the depth of winter, I finally learned that there was within me an invincible summer.",
+    "fr": "In the depth of winter, I finally learned that there was within me an invincible summer."},
+
     "author": "Albert Camus",
     "categories": ["Famous Quotes", "Inspirational"]
   },

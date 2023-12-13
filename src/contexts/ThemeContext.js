@@ -1,7 +1,7 @@
 // ThemeContext.js
 
 import React, {createContext, useContext, useState} from 'react';
-import {lightTheme, darkTheme} from '../themes/themes'; // Adjust the import path
+import {lightTheme, darkTheme} from '../themes/themes';
 
 const ThemeContext = createContext();
 
