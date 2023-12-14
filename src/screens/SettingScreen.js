@@ -115,7 +115,7 @@ const SettingScreen = () => {
           <Text
             style={[
               styles.text,
-              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+              {color: currentTheme.colors.text, fontFamily: "Nunito-Regular"},
             ]}
           >
             Dark {t('darkMode')} Mode

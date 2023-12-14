@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +16,6 @@ import AuthorScreen from './src/screens/AuthorScreen';
 import {ThemeProvider} from './src/contexts/ThemeContext';
 import {lightTheme, darkTheme} from './src/themes/themes';
 
-import * as Font from 'expo-font';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -74,15 +73,7 @@ function TabNavigation() {
 }
 
 function App() {
-  useEffect(() => {
-    async function loadFonts() {
-      await Font.loadAsync({
-        'Nutino-Regular': require('./src/assets/fonts/Nunito-Regular.ttf'),
-      });
-    }
 
-    loadFonts();
-  }, []);
   return (
     <ThemeProvider>
       <NavigationContainer>
