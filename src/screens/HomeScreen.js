@@ -181,13 +181,13 @@ const HomeScreen = () => {
             ))}
           </ScrollView>
           <View style={styles.buttonContainer}>
-            <MainButton title={t('writeYourQuote')} onPress={toggleModal} />
-            <MainButton title={t('getNewQuotes')} onPress={changeRandomQuotes} />
+            <MainButton title={t('Write Your Quote')} onPress={toggleModal} />
+            <MainButton title={t('Get New Quotes')} onPress={changeRandomQuotes} />
           </View>
         </>
       ) : (
         <View style={styles.container}>
-          <Text>{t('noQuotesAvailable')}</Text>
+          <Text>{t('No Quotes Available')}</Text>
         </View>
       )}
 

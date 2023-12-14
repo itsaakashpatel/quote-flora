@@ -8,37 +8,30 @@ import {Rating} from 'react-native-ratings';
 import {useTheme} from '../contexts/ThemeContext';
 import {useNavigation} from '@react-navigation/native';
 
-
-
 const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
   const {currentTheme} = useTheme();
   const navigation = useNavigation();
 
   const viewShotRef = useRef();
-  const [currentLanguage, setcurrentLanguage] = useState("english")
-  const [currentQuote, setcurrentQuote] = useState(quote.content)
-
-
- 
-  
+  const [currentLanguage, setcurrentLanguage] = useState('english');
+  const [currentQuote, setcurrentQuote] = useState(quote.content);
 
   const changeLanguage = async () => {
-    if (currentLanguage === "english") {
-      setcurrentLanguage("french");
+    if (currentLanguage === 'english') {
+      setcurrentLanguage('french');
       // translate quote
-     
-      console.log(`quote == ${quote}`)
-      setcurrentQuote("quote in french");
-    } else if (currentLanguage === "french") {
-      setcurrentLanguage("english");
+
+      console.log(`quote == ${quote}`);
+      setcurrentQuote('quote in french');
+    } else if (currentLanguage === 'french') {
+      setcurrentLanguage('english');
       // quote in english
       setcurrentQuote(quote.content);
     }
-  
 
-    console.log(currentLanguage)
-    console.log("current quote :- " ,currentQuote)
-  }
+    console.log(currentLanguage);
+    console.log('current quote :- ', currentQuote);
+  };
 
   const handleDownload = async () => {
     try {
@@ -120,11 +113,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
           format: 'png',
         }}
       >
-        <Text style={[styles.text, {color: currentTheme.colors.text}]}>{(currentQuote)}</Text>
-        <Text style={[styles.text, {color: currentTheme.colors.text}]}>
-          <Text style={[styles.text, {color: currentTheme.colors.text}]}>by: </Text>
-          {quote.author}
-        </Text>
+        <Text style={[styles.text, {color: currentTheme.colors.text}]}>{currentQuote}</Text>
         <View style={styles.author}>
           {quote.author ? (
             <Image
@@ -169,10 +158,8 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={changeLanguage}>
-          <Icon name='exchange' size={22}></Icon>
+          <Icon name="exchange" size={22}></Icon>
         </TouchableOpacity>
-
-
       </View>
     </View>
   );

@@ -12,16 +12,16 @@ import {useTranslation, I18nextProvider} from 'react-i18next';
 import i18n from '../../i18n';
 
 const SettingScreen = () => {
-  const {currentTheme, toggleTheme} = useTheme();
+  const {currentTheme, toggleTheme, fontSelectHandler, currentFont} = useTheme();
   const {t} = useTranslation();
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [notificationTime, setNotificationTime] = useState(new Date());
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
   const [notificationFrequency, setNotificationFrequency] = useState('daily');
-  const [selectedTextStyle, setSelectedTextStyle] = useState('normal'); // Add this state
+  const [selectedTextStyle, setSelectedTextStyle] = useState('default');
 
   const textStyleOptions = [
-    {key: 'normal', label: 'Normal'},
+    {key: 'default', label: 'Default'},
     {key: 'nutino', label: 'Nutino'},
   ];
 
@@ -52,6 +52,13 @@ const SettingScreen = () => {
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
+  };
+
+  const fontStyleHandler = (key) => {
+    setSelectedTextStyle(key);
+    if (key === 'nutino') {
+      fontSelectHandler('nutino');
+    }
   };
 
   useEffect(() => {}, [notificationEnabled, notificationTime, notificationFrequency]);
@@ -105,7 +112,12 @@ const SettingScreen = () => {
           />
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, {color: currentTheme.colors.text}]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             Dark {t('darkMode')} Mode
           </Text>
           <Switch value={currentTheme === darkTheme} onValueChange={toggleTheme} />
@@ -116,7 +128,7 @@ const SettingScreen = () => {
           <ModalSelector
             data={textStyleOptions}
             initValue={selectedTextStyle}
-            onChange={(option) => setSelectedTextStyle(option.key)}
+            onChange={(option) => fontStyleHandler(option.key)}
           />
         </View>
       </SafeAreaView>

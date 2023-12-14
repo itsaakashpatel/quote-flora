@@ -16,6 +16,8 @@ import AuthorScreen from './src/screens/AuthorScreen';
 import {ThemeProvider} from './src/contexts/ThemeContext';
 import {lightTheme, darkTheme} from './src/themes/themes';
 
+import * as Font from 'expo-font';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -73,13 +75,14 @@ function TabNavigation() {
 
 function App() {
   useEffect(() => {
-    const loadAsync = async () => {
-      await loadFonts();
-    };
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Nutino-Regular': require('./src/assets/fonts/Nunito-Regular.ttf'),
+      });
+    }
 
-    loadAsync();
+    loadFonts();
   }, []);
-
   return (
     <ThemeProvider>
       <NavigationContainer>
