@@ -5,10 +5,12 @@ import {useTheme} from '../contexts/ThemeContext';
 
 const AuthorDetails = ({author}) => {
   const {currentTheme} = useTheme();
+  const {currentFont} = useTheme();
+
   return (
     <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-      <Text style={[styles.text, {text: currentTheme.colors.text}]}>Quote: {author.content}</Text>
-      <Text style={[styles.text, {text: currentTheme.colors.text}]}>Author: {author.author}</Text>
+      <Text style={[styles.text, {text: currentTheme.colors.text,fontFamily: currentFont && currentFont }]}>Quote: {author.content}</Text>
+      <Text style={[styles.text, {text: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>Author: {author.author}</Text>
       <LikeButton />
     </View>
   );

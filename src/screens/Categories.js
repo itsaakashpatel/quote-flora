@@ -7,6 +7,7 @@ import {useTheme} from '../contexts/ThemeContext';
 const Categories = () => {
   const {currentTheme} = useTheme();
   const navigation = useNavigation();
+  const {currentFont} = useTheme();
 
   const navigateToCategory = (categoryName) => {
     navigation.navigate('CategoryScreen', {categoryName});
@@ -14,14 +15,14 @@ const Categories = () => {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-      <Text style={[styles.header, {color: currentTheme.colors.text}]}>Categories</Text>
+      <Text style={[styles.header, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>Categories</Text>
       <FlatList
         data={categories}
         keyExtractor={(item) => item._id}
         renderItem={({item}) => (
           <TouchableOpacity onPress={() => navigateToCategory(item.name)}>
-            <View style={[styles.categoryItem, {color: currentTheme.colors.text}]}>
-              <Text style={[styles.text, {color: currentTheme.colors.text}]}>{item.name}</Text>
+            <View style={[styles.categoryItem, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>
+              <Text style={[styles.text, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>{item.name}</Text>
             </View>
           </TouchableOpacity>
         )}

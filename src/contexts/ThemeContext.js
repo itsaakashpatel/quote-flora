@@ -1,8 +1,6 @@
-// ThemeContext.js
-
 import React, {createContext, useContext, useState} from 'react';
 import {lightTheme, darkTheme} from '../themes/themes';
-
+import {FONT_FAMILY} from '../themes/fonts';
 const ThemeContext = createContext();
 
 export const useTheme = () => {
@@ -15,15 +13,24 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({children}) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [currentFont, setCurrentFont] = useState(null);
 
   const toggleTheme = () => {
     setIsDarkTheme((prev) => !prev);
   };
 
+  const fontSelectHandler = (key) => {
+    if (key === 'nunito') {
+      setCurrentFont(FONT_FAMILY.nunito);
+    }
+  };
+
   const currentTheme = isDarkTheme ? darkTheme : lightTheme;
 
   return (
-    <ThemeContext.Provider value={{toggleTheme, isDarkTheme, currentTheme}}>
+    <ThemeContext.Provider
+      value={{toggleTheme, isDarkTheme, currentTheme, currentFont, fontSelectHandler}}
+    >
       {children}
     </ThemeContext.Provider>
   );

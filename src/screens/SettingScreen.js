@@ -1,29 +1,34 @@
 // SettingScreen.js
-import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView, Switch, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {View, Text, SafeAreaView, Switch, StyleSheet, TouchableOpacity} from 'react-native';
+import {Button} from 'react-native-paper';
 import Header from '../components/Header';
 import ModalSelector from 'react-native-modal-selector';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Notification from '../utilities/Notification';
-import { useTheme } from '../contexts/ThemeContext';
-import { lightTheme, darkTheme } from '../themes/themes';
-import { useTranslation, I18nextProvider } from 'react-i18next';
+import {useTheme} from '../contexts/ThemeContext';
+import {lightTheme, darkTheme} from '../themes/themes';
+import {useTranslation, I18nextProvider} from 'react-i18next';
 import i18n from '../../i18n';
 
-
 const SettingScreen = () => {
-  const { currentTheme, toggleTheme } = useTheme();
-  const { t } = useTranslation();
+  const {currentTheme, toggleTheme, fontSelectHandler, currentFont} = useTheme();
+  const {t} = useTranslation();
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [notificationTime, setNotificationTime] = useState(new Date());
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
   const [notificationFrequency, setNotificationFrequency] = useState('daily');
+  const [selectedTextStyle, setSelectedTextStyle] = useState('default');
+
+  const textStyleOptions = [
+    {key: 'default', label: 'Default'},
+    {key: 'nunito', label: 'Nunito'},
+  ];
 
   const frequencyOptions = [
-    { key: 'daily', label: t('daily') },
-    { key: 'weekly', label: t('weekly') },
-    { key: 'monthly', label: t('monthly') },
+    {key: 'daily', label: t('daily')},
+    {key: 'weekly', label: t('weekly')},
+    {key: 'monthly', label: t('monthly')},
   ];
 
   const toggleNotification = (value) => {
@@ -49,36 +54,56 @@ const SettingScreen = () => {
     i18n.changeLanguage(lang);
   };
 
-  useEffect(() => {
+  const fontStyleHandler = (key) => {
+    setSelectedTextStyle(key);
+    if (key === 'nunito') {
+      fontSelectHandler('nunito');
+    }
+  };
 
-  }, [notificationEnabled, notificationTime, notificationFrequency]);
+  useEffect(() => {}, [notificationEnabled, notificationTime, notificationFrequency]);
 
   return (
-    <I18nextProvider i18n={i18n}> 
-      <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
-        <Header text={('settings')} />
+    <I18nextProvider i18n={i18n}>
+      <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
+        <Header text={'settings'} />
         <View style={styles.languageButtons}>
           <Button onPress={() => changeLanguage('en')}>{t('english')}</Button>
           <Button onPress={() => changeLanguage('fr')}>{t('french')}</Button>
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, { color: currentTheme.colors.text }]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             {t('enableNotifications')}
           </Text>
           <Switch value={notificationEnabled} onValueChange={toggleNotification} />
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, { color: currentTheme.colors.text }]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             {t('notificationTime')}
           </Text>
           <TouchableOpacity onPress={showTimePicker}>
-            <Text style={[styles.text, { color: currentTheme.colors.text }]}>
+            <Text
+              style={[
+                styles.text,
+                {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+              ]}
+            >
               {notificationTime.toLocaleTimeString()}
             </Text>
           </TouchableOpacity>
           {showTimePicker && (
             <DateTimePicker
-              style={[styles.text, { color: currentTheme.colors.text }]}
+              style={[styles.text, {color: currentTheme.colors.text}]}
               value={notificationTime}
               mode="time"
               display="default"
@@ -87,7 +112,12 @@ const SettingScreen = () => {
           )}
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, { color: currentTheme.colors.text }]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             {t('notificationFrequency')}
           </Text>
           <ModalSelector
@@ -102,8 +132,31 @@ const SettingScreen = () => {
           />
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, { color: currentTheme.colors.text }]}>{t('darkMode')}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
+            Dark Mode
+          </Text>
           <Switch value={currentTheme === darkTheme} onValueChange={toggleTheme} />
+        </View>
+
+        <View style={styles.settingItem}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
+            Text Style
+          </Text>
+          <ModalSelector
+            data={textStyleOptions}
+            initValue={selectedTextStyle}
+            onChange={(option) => fontStyleHandler(option.key)}
+          />
         </View>
       </SafeAreaView>
     </I18nextProvider>

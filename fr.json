@@ -1,8 +1,5 @@
-
 {
-    "quotes": "Citations",
-    "noQuotesAvailable": "Aucune citation disponible",
-    "getNewQuotes": "Obtenir de nouvelles citations"
-   
-  }
-  
+  "quotes": "Citations",
+  "noQuotesAvailable": "Aucune citation disponible",
+  "getNewQuotes": "Obtenir de nouvelles citations"
+}

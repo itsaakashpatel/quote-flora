@@ -15,11 +15,11 @@ import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTheme} from '../contexts/ThemeContext';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+import 'i18next';
 
-import 'i18next'
 const HomeScreen = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const {currentTheme} = useTheme();
   const [randomQuoteIndices, setRandomQuoteIndices] = useState([]);
   const [allQuotes, setAllQuotes] = useState([]);
@@ -28,6 +28,7 @@ const HomeScreen = () => {
   // New states for the modal
   const [isModalVisible, setModalVisible] = useState(false);
   const [newQuote, setNewQuote] = useState('');
+  const {currentFont} = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -114,7 +115,7 @@ const HomeScreen = () => {
   const favouriteQuoteHandler = (value) => {
     const updatedLikedQuotes = allQuotes.reduce((accumulator, currentQuote) => {
       if (currentQuote._id === value.id) {
-        currentQuote.isLiked = value.isLiked; 
+        currentQuote.isLiked = value.isLiked;
       }
       return [...accumulator, currentQuote];
     }, []);
@@ -180,12 +181,14 @@ const HomeScreen = () => {
               />
             ))}
           </ScrollView>
-<MainButton  title={t('writeYourQuote')} onPress={toggleModal} />
-          <MainButton title={t('getNewQuotes')} onPress={changeRandomQuotes} />
+          <View style={{...styles.buttonContainer, fontFamily: currentFont && currentFont}}>
+            <MainButton title={t('Write Your Quote')} onPress={toggleModal} />
+            <MainButton title={t('Get New Quotes')} onPress={changeRandomQuotes} />
+          </View>
         </>
       ) : (
         <View style={styles.container}>
-          <Text>{t('noQuotesAvailable')}</Text>
+          <Text>{t('No Quotes Available')}</Text>
         </View>
       )}
 
@@ -194,7 +197,7 @@ const HomeScreen = () => {
         <View style={styles.modalContainer}>
           <TextInput
             placeholder="Write your quote here"
-            style={styles.input}
+            style={{...styles.input, fontFamily: currentFont && currentFont}}
             multiline
             value={newQuote}
             onChangeText={(text) => setNewQuote(text)}
@@ -219,6 +222,11 @@ const HomeScreen = () => {
   );
 };
 const styles = StyleSheet.create({
+  // text: {
+  //   fontFamily: 'NunitoRegular',
+  //   fontSize: 16,
+  //   color: 'black',
+  // },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -258,11 +266,16 @@ const styles = StyleSheet.create({
   modalButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '80%',
+    width: '50%',
   },
   modalButton: {
     padding: 10,
     borderRadius: 5,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12,
   },
 });
 

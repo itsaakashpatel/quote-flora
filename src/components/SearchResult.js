@@ -5,6 +5,7 @@ import {useTheme} from '../contexts/ThemeContext';
 
 function SearchResult({type, data}) {
   const {currentTheme} = useTheme();
+  const {currentFont} = useTheme();
   const openURL = (link) => {
     Linking.openURL(link);
   };
@@ -12,19 +13,19 @@ function SearchResult({type, data}) {
   if (type === TYPES.AUTHOR) {
     return (
       <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-        <Text style={[styles.title, {color: currentTheme.colors.text}]}>{data.name}</Text>
-        <Text style={[styles.description, {color: currentTheme.colors.text}]}>
+        <Text style={[styles.title, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>{data.name}</Text>
+        <Text style={[styles.description, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>
           {data.description}
         </Text>
         <TouchableOpacity onPress={() => openURL(data.link)}>
-          <Text style={{...styles.link, color: currentTheme.colors.text}}>{data.link}</Text>
+          <Text style={{...styles.link, color: currentTheme.colors.text, fontFamily: currentFont && currentFont}}>{data.link}</Text>
         </TouchableOpacity>
       </View>
     );
   } else if (type === TYPES.CATEGORIES) {
     return (
       <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-        <Text style={[styles.title, {fontSize: 16}, {color: currentTheme.colors.text}]}>
+        <Text style={[styles.title, {fontSize: 16}, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>
           {data.name}
         </Text>
       </View>
@@ -32,7 +33,7 @@ function SearchResult({type, data}) {
   } else if (type === TYPES.QUOTE) {
     return (
       <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-        <Text style={[styles.title, {fontSize: 14}, {color: currentTheme.colors.text}]}>
+        <Text style={[styles.title, {fontSize: 14}, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>
           {data.content}
         </Text>
       </View>
