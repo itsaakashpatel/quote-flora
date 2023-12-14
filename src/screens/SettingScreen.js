@@ -22,7 +22,7 @@ const SettingScreen = () => {
 
   const textStyleOptions = [
     {key: 'default', label: 'Default'},
-    {key: 'nutino', label: 'Nutino'},
+    {key: 'nunito', label: 'Nunito'},
   ];
 
   const frequencyOptions = [
@@ -56,8 +56,8 @@ const SettingScreen = () => {
 
   const fontStyleHandler = (key) => {
     setSelectedTextStyle(key);
-    if (key === 'nutino') {
-      fontSelectHandler('nutino');
+    if (key === 'nunito') {
+      fontSelectHandler('nunito');
     }
   };
 
@@ -72,17 +72,32 @@ const SettingScreen = () => {
           <Button onPress={() => changeLanguage('fr')}>{t('french')}</Button>
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, {color: currentTheme.colors.text}]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             {t('enableNotifications')}
           </Text>
           <Switch value={notificationEnabled} onValueChange={toggleNotification} />
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, {color: currentTheme.colors.text}]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             {t('notificationTime')}
           </Text>
           <TouchableOpacity onPress={showTimePicker}>
-            <Text style={[styles.text, {color: currentTheme.colors.text}]}>
+            <Text
+              style={[
+                styles.text,
+                {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+              ]}
+            >
               {notificationTime.toLocaleTimeString()}
             </Text>
           </TouchableOpacity>
@@ -97,7 +112,12 @@ const SettingScreen = () => {
           )}
         </View>
         <View style={styles.settingItem}>
-          <Text style={[styles.text, {color: currentTheme.colors.text}]}>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
             {t('notificationFrequency')}
           </Text>
           <ModalSelector
@@ -115,16 +135,23 @@ const SettingScreen = () => {
           <Text
             style={[
               styles.text,
-              {color: currentTheme.colors.text, fontFamily: "Nunito-Regular"},
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
             ]}
           >
-            Dark {t('darkMode')} Mode
+            Dark Mode
           </Text>
           <Switch value={currentTheme === darkTheme} onValueChange={toggleTheme} />
         </View>
 
         <View style={styles.settingItem}>
-          <Text style={[styles.text, {color: currentTheme.colors.text}]}>Text Style</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: currentTheme.colors.text, fontFamily: currentFont && currentFont},
+            ]}
+          >
+            Text Style
+          </Text>
           <ModalSelector
             data={textStyleOptions}
             initValue={selectedTextStyle}

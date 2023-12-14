@@ -1,3 +1,3 @@
 export const FONT_FAMILY = {
-  nutino:  `Nunito-Regular`,
+  nunito: `Nunito_400Regular`,
 };

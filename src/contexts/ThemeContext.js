@@ -20,8 +20,8 @@ export const ThemeProvider = ({children}) => {
   };
 
   const fontSelectHandler = (key) => {
-    if (key === 'nutino') {
-      setCurrentFont(FONT_FAMILY.nutino);
+    if (key === 'nunito') {
+      setCurrentFont(FONT_FAMILY.nunito);
     }
   };
 
