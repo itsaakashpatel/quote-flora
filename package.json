@@ -11,6 +11,7 @@
     "lint": "prettier --check ."
   },
   "dependencies": {
+    "@parvineyvazov/json-translator": "^1.10.0",
     "@expo/webpack-config": "^19.0.0",
     "@react-native-async-storage/async-storage": "^1.18.2",
     "@react-navigation/bottom-tabs": "^6.5.11",
@@ -23,10 +24,14 @@
     "expo-notifications": "~0.20.1",
     "expo-permissions": "^14.4.0",
     "expo-status-bar": "~1.6.0",
+    "i18next": "^23.7.8",
+    "language-icons": "^0.3.0",
     "material-icons": "^1.13.12",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^13.5.0",
     "react-native": "^0.72.6",
+    "react-native-localize": "^3.0.4",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-modal-selector": "^2.1.2",
     "react-native-paper": "^5.11.0",

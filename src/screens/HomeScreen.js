@@ -15,8 +15,11 @@ import QuoteCard from '../components/QuoteCard';
 import MainButton from '../components/MainButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTheme} from '../contexts/ThemeContext';
+import {useTranslation} from 'react-i18next';
+import 'i18next';
 
 const HomeScreen = () => {
+  const {t} = useTranslation();
   const {currentTheme} = useTheme();
   const [randomQuoteIndices, setRandomQuoteIndices] = useState([]);
   const [allQuotes, setAllQuotes] = useState([]);
@@ -111,7 +114,7 @@ const HomeScreen = () => {
   const favouriteQuoteHandler = (value) => {
     const updatedLikedQuotes = allQuotes.reduce((accumulator, currentQuote) => {
       if (currentQuote._id === value.id) {
-        currentQuote.isLiked = value.isLiked; // Update isLiked property
+        currentQuote.isLiked = value.isLiked;
       }
       return [...accumulator, currentQuote];
     }, []);
@@ -177,15 +180,14 @@ const HomeScreen = () => {
               />
             ))}
           </ScrollView>
-
           <View style={styles.buttonContainer}>
-            <MainButton title="Write Your Quote" onPress={toggleModal} />
-            <MainButton title="Get New Quotes" onPress={changeRandomQuotes} />
+            <MainButton title={t('writeYourQuote')} onPress={toggleModal} />
+            <MainButton title={t('getNewQuotes')} onPress={changeRandomQuotes} />
           </View>
         </>
       ) : (
-        <View style={styles.noQuotesContainer}>
-          <Text>No quotes available</Text>
+        <View style={styles.container}>
+          <Text>{t('noQuotesAvailable')}</Text>
         </View>
       )}
 
@@ -218,7 +220,6 @@ const HomeScreen = () => {
     </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   // text: {
   //   fontFamily: 'NunitoRegular',
