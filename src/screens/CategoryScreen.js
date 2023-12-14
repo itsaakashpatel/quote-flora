@@ -8,6 +8,8 @@ const CategoryScreen = ({route}) => {
   const {currentTheme} = useTheme();
   const {categoryName} = route.params;
   const [allQuotes, setAllQuotes] = useState([]);
+  const {currentFont} = useTheme();
+
 
   useEffect(() => {
     AsyncStorage.getItem('quotes')
@@ -69,7 +71,7 @@ const CategoryScreen = ({route}) => {
 
   return (
     <View style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-      <Text style={[styles.headertxt, {fontSize: 24}, {color: currentTheme.colors.text}]}>
+      <Text style={[styles.headertxt, {fontSize: 24}, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>
         Category: {categoryName}
       </Text>
       <FlatList

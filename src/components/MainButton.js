@@ -4,12 +4,13 @@ import {useTheme} from '../contexts/ThemeContext';
 
 const MainButton = ({title, onPress}) => {
   const {currentTheme} = useTheme();
+  const {currentFont} = useTheme();
   return (
     <TouchableOpacity
       style={[styles.button, {backgroundColor: currentTheme.colors.background}]}
       onPress={onPress}
     >
-      <Text style={[styles.buttonText, {color: currentTheme.buttonText.color}]}>{title}</Text>
+      <Text style={[styles.buttonText, {color: currentTheme.buttonText.color, fontFamily: currentFont && currentFont}]}>{title}</Text>
     </TouchableOpacity>
   );
 };

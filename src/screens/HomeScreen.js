@@ -28,6 +28,7 @@ const HomeScreen = () => {
   // New states for the modal
   const [isModalVisible, setModalVisible] = useState(false);
   const [newQuote, setNewQuote] = useState('');
+  const {currentFont} = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -180,7 +181,7 @@ const HomeScreen = () => {
               />
             ))}
           </ScrollView>
-          <View style={styles.buttonContainer}>
+          <View style={{...styles.buttonContainer, fontFamily: currentFont && currentFont}}>
             <MainButton title={t('Write Your Quote')} onPress={toggleModal} />
             <MainButton title={t('Get New Quotes')} onPress={changeRandomQuotes} />
           </View>
@@ -196,7 +197,7 @@ const HomeScreen = () => {
         <View style={styles.modalContainer}>
           <TextInput
             placeholder="Write your quote here"
-            style={styles.input}
+            style={{...styles.input, fontFamily: currentFont && currentFont}}
             multiline
             value={newQuote}
             onChangeText={(text) => setNewQuote(text)}

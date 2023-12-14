@@ -13,7 +13,7 @@ const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(TYPES.AUTHOR); // 0 for Authors, 1 for Quotes, 2 for Categories
   const [searchResults, setSearchResults] = useState([]);
-
+  const {currentFont} = useTheme();
   useEffect(() => {
     const lowerCaseQuery = searchQuery && searchQuery.toLowerCase();
     if (selectedCategory === TYPES.AUTHOR) {
@@ -74,12 +74,12 @@ const SearchScreen = () => {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-      <Header text={'Search'} />
+      <Header style={{...styles.text, fontFamily: currentFont && currentFont}} text={'Search'} />
       <TextInput
         placeholder="Search for authors, quotes, or categories"
         value={searchQuery}
         onChangeText={(text) => handleSearch(text)}
-        style={styles.searchInput}
+        style={{...styles.searchInput, fontFamily: currentFont && currentFont}}
       />
       <SegmentedControlTab
         values={['Authors', 'Quotes', 'Categories']}

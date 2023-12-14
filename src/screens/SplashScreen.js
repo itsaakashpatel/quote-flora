@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {useTheme} from '../contexts/ThemeContext';
 
+
 const SplashScreen = ({navigation}) => {
   const {currentTheme} = useTheme();
   useEffect(() => {

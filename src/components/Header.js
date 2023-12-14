@@ -4,9 +4,10 @@ import {useTheme} from '../contexts/ThemeContext';
 
 const Header = ({text = ''}) => {
   const {currentTheme} = useTheme();
+  const {currentFont} = useTheme();
   return (
     <View>
-      <Text style={[styles.txt, {color: currentTheme.colors.text}]}>{text}</Text>
+      <Text style={[styles.txt, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>{text}</Text>
     </View>
   );
 };

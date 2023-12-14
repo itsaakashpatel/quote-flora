@@ -14,6 +14,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
 
   const viewShotRef = useRef();
   const [currentLanguage, setcurrentLanguage] = useState('english');
+  const {currentFont} = useTheme();
   const [currentQuote, setcurrentQuote] = useState(quote.content);
 
   const changeLanguage = async () => {
@@ -105,7 +106,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
   };
 
   return (
-    <View style={[styles.container, {backgroundColor: currentTheme.colors.quotecard}]}>
+    <View style={[styles.container, {backgroundColor: currentTheme.colors.quotecard, fontFamily: currentFont && currentFont}]}>
       <ViewShot
         ref={viewShotRef}
         options={{
@@ -113,7 +114,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
           format: 'png',
         }}
       >
-        <Text style={[styles.text, {color: currentTheme.colors.text}]}>{currentQuote}</Text>
+        <Text style={[styles.text, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>{currentQuote}</Text>
         <View style={styles.author}>
           {quote.author ? (
             <Image
@@ -129,7 +130,7 @@ const QuoteCard = ({quote, onDelete, favouriteQuoteHandler, updateRating}) => {
             />
           )}
           <TouchableOpacity onPress={handleAuthorClick}>
-            <Text style={[styles.authorText, {color: currentTheme.colors.text}]}>
+            <Text style={[styles.authorText, {color: currentTheme.colors.text, fontFamily: currentFont && currentFont}]}>
               {quote.author}
             </Text>
           </TouchableOpacity>

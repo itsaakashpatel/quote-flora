@@ -6,6 +6,7 @@ import {useTheme} from '../contexts/ThemeContext';
 
 const LikeButton = ({quote, onLikeHandler}) => {
   const {currentTheme} = useTheme();
+  const {currentFont} = useTheme();
   const toggleLike = () => {
     // setIsLikedQuote(quote.isLiked ? false: true)
     onLikeHandler({

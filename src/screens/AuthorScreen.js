@@ -3,11 +3,13 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Authors from '../data/authors.json';
+import { useTheme } from '../contexts/ThemeContext';
 
 const AuthorScreen = ({route}) => {
   const navigation = useNavigation();
   const {author} = route.params;
   const [authorInfo, setAuthorInfo] = useState(null);
+  const {currentFont} = useTheme();
 
   useEffect(() => {
     //finding the author
@@ -27,15 +29,15 @@ const AuthorScreen = ({route}) => {
       .catch((err) => console.error('An error occurred', err));
   };
 
-  if (authorInfo === null) return <Text>Loading...</Text>;
+  if (authorInfo === null) return <Text >Loading...</Text>;
   else
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.name}>{authorInfo.name}</Text>
-        <Text style={styles.jobTitle}>{authorInfo.description}</Text>
-        <Text style={styles.bio}>{authorInfo.bio}</Text>
+        <Text style={{...styles.name, fontFamily: currentFont && currentFont}}>{authorInfo.name}</Text>
+        <Text style={{...styles.jobTitle, fontFamily: currentFont}}>{authorInfo.description}</Text>
+        <Text style={{...styles.bio, fontFamily: currentFont}}>{authorInfo.bio}</Text>
         <TouchableOpacity onPress={() => openExternalLink(authorInfo.link)}>
-          <Text style={styles.wikiLink}>Read more on Wikipedia</Text>
+          <Text style={{...styles.wikiLink,  fontFamily: currentFont}}>Read more on Wikipedia</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

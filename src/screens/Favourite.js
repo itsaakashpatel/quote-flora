@@ -18,6 +18,8 @@ const Favourite = () => {
   const [likedQuotes, setLikedQuotes] = useState([]);
   const [allQuotes, setAllQuotes] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const {currentFont} = useTheme();
+
 
   useEffect(() => {
     fetchQuotes();
@@ -89,7 +91,7 @@ const Favourite = () => {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: currentTheme.colors.background}]}>
-      <Header text={'Your favourite Quotes'} />
+      <Header style={[styles.headertxt, { fontFamily: currentFont && currentFont}]} text={'Your favourite Quotes'} />
       <FlatList
         style={styles.container}
         data={likedQuotes}
